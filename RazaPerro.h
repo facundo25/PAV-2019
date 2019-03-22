@@ -1,9 +1,9 @@
 //
-// Created by yoka on 19/03/19.
+// Created by yoka on 21/03/19.
 //
 
-#ifndef OBL_0_RAZAPERRO_H
-#define OBL_0_RAZAPERRO_H
+#ifndef OBLIGATORIO0_RAZAPERRO_H
+#define OBLIGATORIO0_RAZAPERRO_H
 
 enum razaPerro{
     labrador,
@@ -15,4 +15,5 @@ enum razaPerro{
     otro
 };
 
-#endif //OBL_0_RAZAPERRO_H
+
+#endif //OBLIGATORIO0_RAZAPERRO_H
