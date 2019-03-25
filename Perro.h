@@ -14,6 +14,7 @@ private:
     RazaPerro raza;
     bool vacunaCachorro;
 
+
 public:
     Perro();
     Perro(RazaPerro, bool);
