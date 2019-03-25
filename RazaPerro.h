@@ -5,7 +5,7 @@
 #ifndef OBLIGATORIO0_RAZAPERRO_H
 #define OBLIGATORIO0_RAZAPERRO_H
 
-enum razaPerro{
+enum RazaPerro{
     labrador,
     ovejero,
     bulldog,
