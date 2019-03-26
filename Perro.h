@@ -9,7 +9,7 @@
 #include "Mascota.h"
 using namespace std;
 
-class Perro {
+class Perro : public Mascota{
 private:
     RazaPerro raza;
     bool vacunaCachorro;
@@ -25,6 +25,7 @@ public:
 
     ~Perro();
 
+    float obtenerRacionDiaria();
 };
 
 

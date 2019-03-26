@@ -6,9 +6,9 @@
 #include "RazaPerro.h"
 #include <iostream>
 
-Perro::Perro(){}
+Perro::Perro():Mascota(){}
 
-Perro::Perro(RazaPerro raza, bool vacunaCachorro){
+Perro::Perro(RazaPerro raza, bool vacunaCachorro): Mascota(/*as,AS,as*/){
     this->raza=raza;
     this->vacunaCachorro=vacunaCachorro;
 }
@@ -28,5 +28,8 @@ bool Perro::getvacunaCachorro() {
 void Perro::setvacunaCachorro(bool vacunaCachorro) {
     this-> vacunaCachorro=vacunaCachorro;
 }
+
+
+float Perro::obtenerRacionDiaria() {}
 
 Perro::~Perro(){}
