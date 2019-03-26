@@ -3,11 +3,12 @@
 //
 #include "Gato.h"
 #include "TipoPelo.h"
+#include "Mascota.h"
 #include <iostream>
 
-Gato::Gato(){}
+Gato::Gato(): Mascota(){}
 
-Gato::Gato(TipoPelo tipoPelo){
+Gato::Gato(string nombre, Genero genero,float peso,TipoPelo tipoPelo):Mascota (nombre, genero, peso){
     this->tipoPelo=tipoPelo;
 }
 
@@ -18,5 +19,7 @@ TipoPelo Gato::gettipoPelo() {
 void Gato::settipoPelo(TipoPelo tipoPelo) {
     this->tipoPelo=tipoPelo;
 }
+
+float Gato::obtenerRacionDiaria() {}
 
 Gato::~Gato(){}

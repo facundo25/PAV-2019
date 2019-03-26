@@ -9,18 +9,20 @@
 #include "Mascota.h"
 using namespace std;
 
-class Gato {
+class Gato : Mascota {
 private:
     TipoPelo tipoPelo;
 
 
 public:
     Gato();
-    Gato(TipoPelo);
+    Gato(string,Genero,float,TipoPelo);
     TipoPelo gettipoPelo();
     void settipoPelo(TipoPelo);
 
     ~Gato();
+
+    float obtenerRacionDiaria();
 
 };
 

@@ -9,15 +9,13 @@
 #include "Mascota.h"
 using namespace std;
 
-class Perro : public Mascota{
+class Perro:public Mascota{
 private:
     RazaPerro raza;
     bool vacunaCachorro;
-
-
 public:
     Perro();
-    Perro(RazaPerro, bool);
+    Perro(string,Genero,float,RazaPerro, bool);
     RazaPerro getraza();
     void setraza(RazaPerro);
     bool getvacunaCachorro();

@@ -4,11 +4,12 @@
 
 #include "Perro.h"
 #include "RazaPerro.h"
+#include "Mascota.h"
 #include <iostream>
 
 Perro::Perro():Mascota(){}
 
-Perro::Perro(RazaPerro raza, bool vacunaCachorro): Mascota(/*as,AS,as*/){
+Perro::Perro(string nombre, Genero genero, float peso, RazaPerro raza, bool vacunaCachorro): Mascota(nombre, genero, peso){
     this->raza=raza;
     this->vacunaCachorro=vacunaCachorro;
 }
