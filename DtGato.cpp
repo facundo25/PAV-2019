@@ -1,4 +1,7 @@
 #include "DtGato.h"
+#include <iostream>
+
+using namespace std;
 
 DtGato::DtGato(string nombre, Genero genero, float peso, float racionDiaria, TipoPelo tipopelo) : DtMascota(nombre, genero, peso, racionDiaria){
 	this->tipopelo = tipopelo;

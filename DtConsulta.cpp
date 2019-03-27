@@ -1,10 +1,13 @@
 #include "DtConsulta.h"
+#include <iostream>
 
-DtConsulta::DtConsulta (DtFecha fechaConsulta, string motivo) : DtConsulta(fechaConsulta, motivo){
+
+DtConsulta::DtConsulta (DtFecha fechaConsulta, string motivo)/*:DtConsulta(fechaConsulta, motivo)*/{
+
 
 }
 
-DtConsulta()::~DtConsulta(){
+DtConsulta::~DtConsulta(){
 
 }
 

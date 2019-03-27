@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include "DtFecha.h"
 
 using namespace std;
 

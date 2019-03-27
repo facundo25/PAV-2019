@@ -10,6 +10,11 @@
 
 #include <string>
 #include <iostream>
+#include "Genero.h"
+#include "DtPerro.h"
+#include "TipoPelo.h"
+#include "RazaPerro.h"
+
 
 using namespace std;
 
@@ -25,7 +30,7 @@ public:
 	DtMascota(string, Genero, float, float);
 
 	string getNombre();
-	genero getGenero();
+	Genero getGenero();
 	float getPeso();
 	float getRacionDiaria();
 
