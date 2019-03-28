@@ -31,6 +31,14 @@ void Perro::setvacunaCachorro(bool vacunaCachorro) {
 }
 
 
-float Perro::obtenerRacionDiaria() {}
+float Perro::obtenerRacionDiaria() {
+
+//    float varPeso = this-> getPeso();
+//    return varPeso * 0.025;
+
+    return this-> getPeso() * 0.025;
+
+}
 
 Perro::~Perro(){}
+

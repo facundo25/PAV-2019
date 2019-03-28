@@ -36,4 +36,28 @@ void Socio::setFechaIngreso(DtFecha fechaIngreso) {
     this ->fechaIngreso=fechaIngreso;
 }
 
+Mascota * Socio::getMascota(int PosMas){
+
+    return this-> Mascotas.m[PosMas];
+
+}
+
+void Socio::setMascota(int PosMas, Mascota* Mascota){
+
+    this -> Mascotas.m[PosMas] = Mascota;
+
+}
+
+Consulta* Socio::getConsulta(int PosCon){
+
+    return this -> Consultas.c[PosCon];
+
+}
+
+void Socio::setConsulta(int PosCon, Consulta* Consulta){
+
+    this -> Consultas.c[PosCon] = Consulta;
+
+}
+
 Socio::~Socio(){}

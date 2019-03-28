@@ -20,6 +20,10 @@ void Gato::settipoPelo(TipoPelo tipoPelo) {
     this->tipoPelo=tipoPelo;
 }
 
-float Gato::obtenerRacionDiaria() {}
+float Gato::obtenerRacionDiaria() {
+
+    return this->getPeso() * 0.015;
+
+}
 
 Gato::~Gato(){}

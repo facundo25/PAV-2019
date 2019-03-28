@@ -6,6 +6,8 @@
 #define OBLIGATORIO0_SOCIO_H
 
 #include "DtFecha.h"
+#include "Mascota.h"
+#include "Consulta.h"
 #include <iostream>
 
 using namespace std;
@@ -15,6 +17,9 @@ private:
     string ci;
     string nombre;
     DtFecha fechaIngreso;
+    arrayMascota Mascotas;
+    arrayConsulta Consultas;
+
 public:
     Socio();
 
@@ -32,7 +37,16 @@ public:
 
     void setFechaIngreso(DtFecha);
 
+    Mascota* getMascota(int PosMas);
+
+    void setMascota(int PosMas, Mascota* Mascota);
+
+    Consulta* getConsulta(int PosCon);
+
+    void setConsulta(int PosCon, Consulta* Consulta);
+
     ~Socio();
+
 };
 
 
