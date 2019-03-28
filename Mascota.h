@@ -32,6 +32,11 @@ public:
 
 };
 
+struct arrayMascota{
 
+    Mascota *m[50];
+    int Tope;
+
+};
 
 #endif //OBLIGATORIO0_MASCOTA_H

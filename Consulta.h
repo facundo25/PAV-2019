@@ -27,4 +27,12 @@ public:
 
 };
 
+struct arrayConsulta
+{
+
+    Consulta *c[20];
+    int Tope;
+
+};
+
 #endif //PAV_2019_CONSULTA_H

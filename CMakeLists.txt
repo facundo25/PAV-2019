@@ -18,4 +18,4 @@ add_executable(PAV-2019
 
         DtFecha.cpp
         DtFecha.h
-        perro.h Consulta.h Consulta.cpp Gato.h Perro.cpp Gato.cpp)
+        Perro.h Consulta.h Consulta.cpp Gato.h Perro.cpp Gato.cpp)

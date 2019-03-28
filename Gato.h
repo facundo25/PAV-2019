@@ -17,12 +17,13 @@ private:
 public:
     Gato();
     Gato(string,Genero,float,TipoPelo);
+
     TipoPelo gettipoPelo();
     void settipoPelo(TipoPelo);
 
-    ~Gato();
-
     float obtenerRacionDiaria();
+
+    ~Gato();
 
 };
 
