@@ -5,7 +5,7 @@
 #ifndef OBLIGATORIO0_SOCIO_H
 #define OBLIGATORIO0_SOCIO_H
 
-#include "DtFecha.h"
+#include "dataType/DtFecha.h"
 #include "Mascota.h"
 #include "Consulta.h"
 #include <iostream>

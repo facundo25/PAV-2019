@@ -1,5 +1,5 @@
 #include "Mascota.h"
-#include "Genero.h"
+#include "enum/Genero.h"
 #include <iostream>
 
 using namespace std;

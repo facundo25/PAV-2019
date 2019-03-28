@@ -10,9 +10,9 @@
 
 #include <string>
 #include <iostream>
-#include "Genero.h"
-#include "TipoPelo.h"
-#include "RazaPerro.h"
+#include "enum/Genero.h"
+#include "enum/TipoPelo.h"
+#include "enum/RazaPerro.h"
 
 
 using namespace std;

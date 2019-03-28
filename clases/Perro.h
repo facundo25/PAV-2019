@@ -5,7 +5,7 @@
 #ifndef PAV_2019_PERRO_H
 #define PAV_2019_PERRO_H
 #include <iostream>
-#include "RazaPerro.h"
+#include "enum/RazaPerro.h"
 #include "Mascota.h"
 using namespace std;
 

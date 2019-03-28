@@ -3,7 +3,7 @@
 //
 
 #include "Perro.h"
-#include "RazaPerro.h"
+#include "enum/RazaPerro.h"
 #include "Mascota.h"
 #include <iostream>
 

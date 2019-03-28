@@ -4,7 +4,7 @@
 
 #ifndef PAV_2019_CONSULTA_H
 #define PAV_2019_CONSULTA_H
-#include "DtFecha.h"
+#include "dataType/DtFecha.h"
 #include <iostream>
 
 using namespace std;

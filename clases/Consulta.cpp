@@ -2,7 +2,7 @@
 // Created by gsoto on 25/03/2019.
 //
 #include "Consulta.h"
-#include "DtFecha.h"
+#include "dataType/DtFecha.h"
 #include <iostream>
 
 Consulta::Consulta(){}

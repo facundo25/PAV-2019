@@ -2,7 +2,7 @@
 // Created by gsoto on 25/03/2019.
 //
 #include "Gato.h"
-#include "TipoPelo.h"
+#include "enum/TipoPelo.h"
 #include "Mascota.h"
 #include <iostream>
 

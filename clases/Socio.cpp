@@ -2,7 +2,7 @@
 // Created by yoka on 14/03/19.
 //
 #include "Socio.h"
-#include "DtFecha.h"
+#include "dataType/DtFecha.h"
 #include <iostream>
 
 Socio::Socio() {}

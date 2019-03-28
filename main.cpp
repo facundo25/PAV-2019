@@ -3,12 +3,12 @@
 //
 #include <iostream>
 #include <stdio.h>
-#include "Socio.h"
-#include "DtFecha.h"
-#include "Gato.h"
-#include "Perro.h"
-#include "Consulta.h"
-#include "Mascota.h"
+#include "clases/Socio.h"
+#include "dataType/DtFecha.h"
+#include "clases/Gato.h"
+#include "clases/Perro.h"
+#include "clases/Consulta.h"
+#include "clases/Mascota.h"
 #define MAX_SOCIOS 10
 
 using namespace std;

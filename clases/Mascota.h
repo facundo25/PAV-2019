@@ -5,7 +5,7 @@
 #ifndef OBLIGATORIO0_MASCOTA_H
 #define OBLIGATORIO0_MASCOTA_H
 #include <iostream>
-#include "Genero.h"
+#include "enum/Genero.h"
 
 using namespace std;
 

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "DtMascota.h"
-#include "RazaPerro.h"
+#include "enum/RazaPerro.h"
 
 using  namespace std;
 
