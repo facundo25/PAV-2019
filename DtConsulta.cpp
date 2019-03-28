@@ -1,9 +1,12 @@
 #include "DtConsulta.h"
+#include "DtFecha.h"
 #include <iostream>
 
+DtConsulta::DtConsulta(){}
+DtConsulta::DtConsulta (DtFecha fechaConsulta, string motivo){
 
-DtConsulta::DtConsulta (DtFecha fechaConsulta, string motivo)/*:DtConsulta(fechaConsulta, motivo)*/{ //aca comente esto porque da error, revisar
-
+    this->fechaconsulta=fechaConsulta;
+    this->motivo=motivo;
 
 }
 
@@ -11,11 +14,11 @@ DtConsulta::~DtConsulta(){
 
 }
 
-DtFecha DtConsulta()::getfechaConsulta(){
-    return this->fechaConsulta;
+DtFecha DtConsulta::getfechaConsulta(){
+    return this->fechaconsulta;
 }
 
-string DtConsulta()::getmotivo(){
+string DtConsulta::getmotivo(){
     return this->motivo;
 }
 

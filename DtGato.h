@@ -10,6 +10,7 @@ private:
 	TipoPelo tipopelo;
 
 public:
+    DtGato();
 	DtGato(string, Genero, float, float, TipoPelo);
 	~DtGato();
 

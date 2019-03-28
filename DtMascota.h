@@ -11,7 +11,6 @@
 #include <string>
 #include <iostream>
 #include "Genero.h"
-#include "DtPerro.h"
 #include "TipoPelo.h"
 #include "RazaPerro.h"
 
@@ -19,7 +18,7 @@
 using namespace std;
 
 class DtMascota {
-private:
+protected:
 	string nombre;
 	Genero genero;
 	float peso;

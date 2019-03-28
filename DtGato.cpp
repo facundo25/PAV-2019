@@ -3,6 +3,8 @@
 
 using namespace std;
 
+DtGato::DtGato() {}
+
 DtGato::DtGato(string nombre, Genero genero, float peso, float racionDiaria, TipoPelo tipopelo) : DtMascota(nombre, genero, peso, racionDiaria){
 	this->tipopelo = tipopelo;
 }
@@ -10,6 +12,8 @@ DtGato::DtGato(string nombre, Genero genero, float peso, float racionDiaria, Tip
 DtGato::~DtGato(){
 
 }
+
+
 
 TipoPelo DtGato::getTipoPelo(){
 	return this->tipopelo;
@@ -31,11 +35,11 @@ ostream& operator << (ostream &salida, DtGato& dtGato) {
     }
 
     salida <<
-        "Nombre: " << dtGato.getNombre << "\n"<<
-        "Genero: " << dtGato.getGenero() <<"\n" <<
-        "Peso: " << dtGato.getPeso() <<"\n" <<
-        "Ración Diaria" << dtGato.getRacionDiaria() <<"\n" <<
-        "TipoPelo: " << stringTipoPelo << "\n" <<
+        "Nombre: " << dtGato.nombre << "\n"<<
+        "Genero: " << dtGato.genero <<"\n" <<
+        "Peso: " << dtGato.peso <<"\n" <<
+        "Ración Diaria" << dtGato.racionDiaria <<"\n" <<
+        "TipoPelo: " << stringTipoPelo << endl;
     return salida;
 
 }

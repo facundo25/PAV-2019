@@ -1,5 +1,5 @@
-#ifndef DTPERRO_H_INCLUDED
-#define DTPERRO_H_INCLUDED
+#ifndef DTPERRO_H
+#define DTPERRO_H
 
 #include <iostream>
 #include "DtMascota.h"
@@ -7,7 +7,7 @@
 
 using  namespace std;
 
-class DtPerro: public DtMascota {
+class DtPerro : public DtMascota {
 
 private:
 	RazaPerro raza;
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif // DTPERRO_H_INCLUDED
+#endif // DTPERRO_H
