@@ -30,7 +30,13 @@ struct mascotas{
     int tope;
 }coleccionMascotas;
 
+//*********** DEFINICION DE FUNCIONES***********
+
 void registrarSocio(string ci, string nombre, DtMascota& dtMascota);
+void ingresarCosnulta(string motivo, string ci);
+
+//*********************************************
+
 
 
 int main(){
@@ -213,6 +219,7 @@ int main(){
 
 ///FUNCIONES
 
+/* ****** FUNCIÓN EXISTE SOCIO ****** */
 
 void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
 
@@ -236,6 +243,26 @@ void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
             cout << "Error\n";
         }
     }
+}
+
+//***********************************************************//
+
+//********************* INGRESAR CONSULTA********************//
+
+void ingresarConsulta(string motivo, string ci){
+    string ciIngresada;
+    string motivoIngresado;
+    cout<< "ingrese la ci del cliente";
+     cin>> ciIngresada;
+     for (int i=0; i<=MAX_SOCIOS; i++){
+         if(coleccionSocios.socios[i]->getCi()== ciIngresada){
+             cout<< "ingrese la consulta";
+             cin>> motivoIngresado;
+
+         }
+
+     }
+
 }
 
 
