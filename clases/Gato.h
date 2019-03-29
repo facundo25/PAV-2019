@@ -9,7 +9,7 @@
 #include "Mascota.h"
 using namespace std;
 
-class Gato : Mascota {
+class Gato : public Mascota {
 private:
     TipoPelo tipoPelo;
 

@@ -17,13 +17,15 @@ private:
     string ci;
     string nombre;
     DtFecha fechaIngreso;
-    arrayMascota Mascotas;
-    arrayConsulta Consultas;
+    Mascota* arrayMascota[10];
+    int topeMascota;
+    Consulta* arrayConsulta[20];
+    int topeConsulta;
 
 public:
     Socio();
 
-    Socio(string, string, DtFecha);
+    Socio(string, string);
 
     string getCi();
 
@@ -37,15 +39,16 @@ public:
 
     void setFechaIngreso(DtFecha);
 
-    Mascota* getMascota(int PosMas);
+    Mascota** getMascotas(int &cantMasc);
 
-    void setMascota(int PosMas, Mascota* Mascota);
+    Consulta** getConsultas(int &canCon);
 
-    Consulta* getConsulta(int PosCon);
-
-    void setConsulta(int PosCon, Consulta* Consulta);
 
     ~Socio();
+
+    void agregarMascota(Mascota*);
+
+    void ingresarConsulta(Consulta*);
 
 };
 

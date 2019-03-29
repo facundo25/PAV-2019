@@ -7,10 +7,11 @@
 
 Socio::Socio() {}
 
-Socio::Socio(string ci, string nombre, DtFecha fechaIngreso) {
+Socio::Socio(string ci, string nombre) {
     this -> ci = ci;
     this -> nombre = nombre;
-    this -> fechaIngreso = fechaIngreso;
+    DtFecha dtFecha=DtFecha(4,3,1990);
+    this -> fechaIngreso = dtFecha;
 }
 
 string Socio::getCi(){
@@ -36,27 +37,31 @@ void Socio::setFechaIngreso(DtFecha fechaIngreso) {
     this ->fechaIngreso=fechaIngreso;
 }
 
-Mascota * Socio::getMascota(int PosMas){
+Mascota ** Socio::getMascotas(int &cantMasc){
 
-    return this-> Mascotas.m[PosMas];
-
-}
-
-void Socio::setMascota(int PosMas, Mascota* Mascota){
-
-    this -> Mascotas.m[PosMas] = Mascota;
+    cantMasc= this-> topeMascota;
+    return  this->arrayMascota;
 
 }
 
-Consulta* Socio::getConsulta(int PosCon){
+Consulta ** Socio::getConsultas(int &canCon) {
 
-    return this -> Consultas.c[PosCon];
+    canCon= this-> topeConsulta;
+    return  this-> arrayConsulta;
 
 }
 
-void Socio::setConsulta(int PosCon, Consulta* Consulta){
+void Socio::agregarMascota(Mascota * mascota) {
+    this -> arrayMascota[this->topeMascota]=mascota;
+    this -> topeMascota++;
 
-    this -> Consultas.c[PosCon] = Consulta;
+}
+
+
+void Socio::ingresarConsulta(Consulta * consulta) {
+
+    this -> arrayConsulta[this->topeConsulta]=consulta;
+    this -> topeConsulta++;
 
 }
 
