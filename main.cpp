@@ -24,6 +24,12 @@ struct socios{ //coleccion de socios
     int tope;
 }coleccionSocios;
 
+struct mascotas{
+
+    Mascota *mascotas[MAX_MASCOTAS];
+    int tope;
+}coleccionMascotas;
+
 void registrarSocio(string ci, string nombre, DtMascota& dtMascota);
 
 
@@ -231,6 +237,64 @@ void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
         }
     }
 }
+
+
+
+
+/* ****** FUNCIÓN EXISTE SOCIO ****** */
+/*
+void existeSocio (string ci){
+    int indice = 0;
+    bool existe = false ;
+    while (existe == false && indice < coleccionSocios.tope ){
+        if (coleccionSocios.socios[indice]->getCi() == ci) {
+            existe = true;
+        } else {
+            indice +1;
+        }
+
+    }
+    if (!existe)
+        throw invalid_argument("\n No existe socio");
+}
+
+*/
+/* FUNCIÓN AGREGAR MASCOTA */
+/*
+void agregarMascota (string ci, DtMascota& dtMascota){
+    try {
+        existesocio(ci);
+        if (esPerro){
+            try {
+                DtPerro& perro = dynamic_cast<DtPerro&> (mascota);
+                Perro* nuevoPerro = new Perro(perro);
+                coleccionMascotas.mascotas[coleccionMascotas.tope] = nuevoPerro;
+                coleccionMascotas.tope++;
+                cout << "\n Se agregó mascota del tipo Perro al socio indicado \n";
+
+            }catch (std::bad_cast) {
+                cout << "Error en el cast DtPerro \n";
+            }
+
+        }
+        else if (esGato) {
+            try {
+                DtGato& gato = dynamic_cast<DtGato&> (mascota);
+                Gato* nuevoGato = new Gato(gato);
+                coleccionMascotas.mascotas[coleccionMascotas.tope] = nuevoGato;
+                coleccionMascotas.tope++;
+                cout << "\n Se agregó mascota del tipo Gato al socio indicado \n";
+
+            }catch (std::bad_cast) {
+                cout << "Error en el cast DtGato \n";
+            }
+        }
+
+    }catch(invalid_argument& e){
+        cout << e.what() << endl;
+    }
+}
+*/
 
 
 
