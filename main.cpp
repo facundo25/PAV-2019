@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <stdio.h>
+#include <typeinfo>
 #include <dataType/DtMascota.h>
 #include <dataType/DtGato.h>
 #include <dataType/DtPerro.h>
@@ -33,7 +34,7 @@ struct mascotas{
 //*********** DEFINICION DE FUNCIONES***********
 
 void registrarSocio(string ci, string nombre, DtMascota& dtMascota);
-void ingresarCosnulta(string motivo, string ci);
+//void ingresarCosnulta(string motivo, string ci);
 
 //*********************************************
 
@@ -41,7 +42,7 @@ void ingresarCosnulta(string motivo, string ci);
 
 int main(){
 
-    system("clear");
+    //system("clear");
 
     int opcion  = 0;
 
@@ -233,13 +234,13 @@ void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
         Gato* nuevoGato= new Gato(dtgato.getNombre(), dtgato.getGenero(), dtgato.getPeso(),dtgato.getTipoPelo());
         nuevoSocio->agregarMascota(nuevoGato);
 
-    }catch(std::bad_cast){
+    }catch(std::bad_cast &NombreVariable){
         try{
             DtPerro& dtperro = dynamic_cast<DtPerro&>(dtMascota);
             Perro* nuevoPerro= new Perro(dtperro.getNombre(), dtperro.getGenero(), dtperro.getPeso(), dtperro.getRazaPerro(), dtperro.getVacunaCachorro());
             nuevoSocio->agregarMascota(nuevoPerro);
         }
-        catch(std::bad_cast) {
+        catch(std::bad_cast &NombreVariable) {
             cout << "Error\n";
         }
     }
@@ -248,7 +249,7 @@ void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
 //***********************************************************//
 
 //********************* INGRESAR CONSULTA********************//
-
+/*
 void ingresarConsulta(string motivo, string ci){
     string ciIngresada;
     string motivoIngresado;
@@ -265,7 +266,7 @@ void ingresarConsulta(string motivo, string ci){
 
 }
 
-
+*/
 
 
 /* ****** FUNCIÓN EXISTE SOCIO ****** */

@@ -26,7 +26,7 @@ public:
     ~Consulta();
 
 };
-
+/*
 struct arrayConsulta
 {
 
@@ -34,5 +34,5 @@ struct arrayConsulta
     int Tope;
 
 }coleccionDeConsultas;
-
+*/
 #endif //PAV_2019_CONSULTA_H
