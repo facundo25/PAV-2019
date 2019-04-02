@@ -16,41 +16,39 @@
 
 #define MAX_SOCIOS 10
 #define MAX_MASCOTAS 10
+#define  MAX_CONSULTAS 20
 
 using namespace std;
 
-struct socios{ //coleccion de socios
+struct socios { //coleccion de socios
 
-    Socio* socios[MAX_SOCIOS];
+    Socio *socios[MAX_SOCIOS];
     int tope;
-}coleccionSocios;
+} coleccionSocios;
 
-struct mascotas{
+struct mascotas {
 
     Mascota *mascotas[MAX_MASCOTAS];
     int tope;
-}coleccionMascotas;
+} coleccionMascotas;
 
 //*********** DEFINICION DE FUNCIONES***********
 
-void registrarSocio(string ci, string nombre, DtMascota& dtMascota);
+void registrarSocio(string ci, string nombre, DtMascota &dtMascota);
 //void ingresarCosnulta(string motivo, string ci);
 
 //*********************************************
 
 
 
-int main(){
+int main() {
 
     //system("clear");
 
-    int opcion  = 0;
+    int opcion = 0;
 
 
-
-
-
-    while(opcion != 99) {
+    while (opcion != 99) {
 
         cout << "---------------------------------------" << endl;
         cout << "--PROGRAMACIÓN AVANZADA - LABORATORIO 0" << endl;
@@ -67,7 +65,7 @@ int main(){
         cin >> opcion;
 
         cout << "---------------------------------------" << endl;
-        coleccionSocios.tope=2;
+        coleccionSocios.tope = 2;
         switch (opcion) {
 
             case 1 : {
@@ -126,7 +124,7 @@ int main(){
                         }
                         cout << "El perro tiene vacuna, 1 si 2 no?";
                         int seleccionVacuna;
-                        cin>> seleccionVacuna;
+                        cin >> seleccionVacuna;
                         bool tieneVacuna;
                         if (seleccionVacuna == 1) {
                             tieneVacuna = true;
@@ -142,7 +140,7 @@ int main(){
 
                         cout << "Que tipo de pelo tiene? seleccione 1 corto, 2 mediano, 3 largo";
                         int seleccionPelo;
-                        cin>> seleccionPelo;
+                        cin >> seleccionPelo;
                         TipoPelo tipopelo;
                         switch (seleccionPelo) {
                             case 1: {
@@ -214,7 +212,7 @@ int main(){
 
     }
 
-    Socio s= Socio();
+    Socio s = Socio();
     return 0;
 };
 
@@ -222,51 +220,61 @@ int main(){
 
 /* ****** FUNCIÓN EXISTE SOCIO ****** */
 
-void registrarSocio(string ci, string nombre, DtMascota& dtMascota){
+void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 
 
-    Socio * nuevoSocio = new Socio(ci, nombre);
+    Socio *nuevoSocio = new Socio(ci, nombre);
     coleccionSocios.tope++;
-    coleccionSocios.socios[coleccionSocios.tope]=nuevoSocio;
+    coleccionSocios.socios[coleccionSocios.tope] = nuevoSocio;
 
     try {
-        DtGato& dtgato = dynamic_cast<DtGato&>(dtMascota);
-        Gato* nuevoGato= new Gato(dtgato.getNombre(), dtgato.getGenero(), dtgato.getPeso(),dtgato.getTipoPelo());
+        DtGato &dtgato = dynamic_cast<DtGato &>(dtMascota);
+        Gato *nuevoGato = new Gato(dtgato.getNombre(), dtgato.getGenero(), dtgato.getPeso(), dtgato.getTipoPelo());
         nuevoSocio->agregarMascota(nuevoGato);
 
-    }catch(std::bad_cast &NombreVariable){
-        try{
-            DtPerro& dtperro = dynamic_cast<DtPerro&>(dtMascota);
-            Perro* nuevoPerro= new Perro(dtperro.getNombre(), dtperro.getGenero(), dtperro.getPeso(), dtperro.getRazaPerro(), dtperro.getVacunaCachorro());
+    } catch (std::bad_cast &NombreVariable) {
+        try {
+            DtPerro &dtperro = dynamic_cast<DtPerro &>(dtMascota);
+            Perro *nuevoPerro = new Perro(dtperro.getNombre(), dtperro.getGenero(), dtperro.getPeso(),
+                                          dtperro.getRazaPerro(), dtperro.getVacunaCachorro());
             nuevoSocio->agregarMascota(nuevoPerro);
         }
-        catch(std::bad_cast &NombreVariable) {
+        catch (std::bad_cast &NombreVariable) {
             cout << "Error\n";
         }
     }
 }
 
-//***********************************************************//
+/***********************************************************/
 
-//********************* INGRESAR CONSULTA********************//
-/*
-void ingresarConsulta(string motivo, string ci){
-    string ciIngresada;
-    string motivoIngresado;
-    cout<< "ingrese la ci del cliente";
-     cin>> ciIngresada;
-     for (int i=0; i<=MAX_SOCIOS; i++){
-         if(coleccionSocios.socios[i]->getCi()== ciIngresada){
-             cout<< "ingrese la consulta";
-             cin>> motivoIngresado;
+/********************* INGRESAR CONSULTA********************/
 
-         }
+void ingresarConsulta(string motivo, string ci) {
+    int contador = 0;
+    bool encontrado = false;
+    Socio * socio = NULL;
+    while (!encontrado && contador < MAX_SOCIOS){
+        if (coleccionSocios.socios[contador]->getCi() == ci) {
+            //encontrado
+            socio = coleccionSocios.socios[contador];
+            encontrado = true;
+        }
+        contador++;
+    }
 
-     }
-
+    if(socio == NULL){
+        throw invalid_argument("No existe el socio");
+        //error
+    }else{
+        //agrego consulta
+        DtFecha fecha = DtFecha(7,5,1991);
+        Consulta *consulta = new Consulta(fecha,motivo);
+        socio->ingresarConsulta(consulta);
+    }
+    
 }
 
-*/
+/************************************************************************************/
 
 
 /* ****** FUNCIÓN EXISTE SOCIO ****** */
