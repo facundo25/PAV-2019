@@ -16,6 +16,7 @@ private:
 
 public:
     Gato();
+
     Gato(string,Genero,float,TipoPelo);
 
     TipoPelo gettipoPelo();
@@ -23,7 +24,7 @@ public:
 
     float obtenerRacionDiaria();
 
-    ~Gato();
+    virtual ~Gato();
 
 };
 

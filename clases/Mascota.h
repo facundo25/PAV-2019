@@ -27,7 +27,7 @@ public:
     void setPeso(float);
     virtual float obtenerRacionDiaria() = 0;
 
-    ~Mascota();
+    virtual ~Mascota();
 
 
 };

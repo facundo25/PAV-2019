@@ -7,7 +7,7 @@
 #include "Mascota.h"
 #include <iostream>
 
-Perro::Perro():Mascota(){}
+Perro::Perro(){}
 
 Perro::Perro(string nombre, Genero genero, float peso, RazaPerro raza, bool vacunaCachorro): Mascota(nombre, genero, peso){
     this->raza=raza;

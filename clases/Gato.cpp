@@ -6,7 +6,7 @@
 #include "Mascota.h"
 #include <iostream>
 
-Gato::Gato(): Mascota(){}
+Gato::Gato(){}
 
 Gato::Gato(string nombre, Genero genero,float peso,TipoPelo tipoPelo):Mascota (nombre, genero, peso){
     this->tipoPelo=tipoPelo;
