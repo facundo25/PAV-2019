@@ -18,13 +18,19 @@ private:
 public:
     DtFecha();
     DtFecha(int, int, int);
+
     int getdia();
     void setdia(int);
+
     int getmes();
     void setmes(int);
+
     int getano();
     void setano(int);
+
     ~DtFecha();
+
+    friend bool operator< (DtFecha& dtFecha1, DtFecha& dtFecha2 );
 
 };
 
