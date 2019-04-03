@@ -435,6 +435,8 @@ int main() {
                     string ciSocio;
                     cout << "Ingrese el motivo de la consulta: ";
                     cin >> ingresoMotivo;
+                    cin.ignore();
+                    getline(cin, ingresoMotivo);
                     cout << "Ingrese ci del socio: ";
                     cin >> ciSocio;
                     ingresarConsulta(ingresoMotivo, ciSocio);
@@ -790,7 +792,7 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
 }
 
-}
+
 
 /* ****** FUNCIÓN OBTERNER MASCOTA ****** */
 
