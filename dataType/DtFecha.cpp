@@ -50,7 +50,6 @@ bool operator< (DtFecha& dtFecha1, DtFecha& dtFecha2 ) {
 
                 return true;
 
-
             } else {
 
                 return false;
