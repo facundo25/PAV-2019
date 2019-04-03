@@ -8,6 +8,7 @@
 #include <dataType/DtGato.h>
 #include <dataType/DtPerro.h>
 #include <dataType/DtConsulta.h>
+#include <codecvt>
 #include "dataType/DtFecha.h"
 #include "dataType/DtConsulta.h"
 #include "clases/Socio.h"
@@ -29,17 +30,20 @@ struct socios { //coleccion de socios
     int tope;
 } coleccionSocios;
 
+
 struct mascotas {
 
     Mascota *mascotas[MAX_MASCOTAS];
     int tope;
 } coleccionMascotas;
 
+
 //*********** DEFINICION DE FUNCIONES***********
 
+void limpiarPantalla();
 void registrarSocio(string ci, string nombre, DtMascota &dtMascota);
 DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantConsultas);
-//void ingresarCosnulta(string motivo, string ci);
+void ingresarConsulta(string motivo, string ci);
 
 //*********************************************
 
@@ -56,7 +60,8 @@ int main() {
     while (opcion != 99) {
 
         cout << "---------------------------------------" << endl;
-        cout << "--PROGRAMACIÓN AVANZADA - LABORATORIO 0" << endl;
+        cout << "--PROGRAMACIÓN AVANZADA - LABORATORIO 0-\n"
+                "==========VETERINARIA LA NUTRIA=========" << endl;
         cout << "---------------------------------------" << endl;
         cout << "1. Registrar socio" << endl;
         cout << "2. Agregar mascota" << endl;
@@ -78,7 +83,6 @@ int main() {
                 if (coleccionSocios.tope == MAX_SOCIOS) {
                     //no puede agregar
                 } else {
-
                     string ci;
                     string nombre;
                     string nombreMascota;
@@ -88,7 +92,7 @@ int main() {
                     int seleccionMascota;
 
                     bool selOK = false;
-
+                    limpiarPantalla();
                     cout << "Ingrese CI: ";
                     cin >> ci;
 
@@ -158,68 +162,49 @@ int main() {
                                     switch (seleccionRaza) {
 
                                         case 1: {
-
                                             raza = labrador;
                                             boolPerroOK = true;
                                             break;
-
                                         }
-
                                         case 2: {
-
                                             raza = ovejero;
                                             boolPerroOK = true;
                                             break;
-
                                         }
-
                                         case 3: {
-
                                             raza = bulldog;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         case 4: {
-
                                             raza = pitbull;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         case 5: {
-
                                             raza = collie;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         case 6: {
-
                                             raza = pekines;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         case 7: {
-
                                             raza = otro;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         default: {
-
                                             cout << "La raza ingresada no es correcta. Ingrese nuevamente." << endl;
                                             break;
-
                                         }
-
                                     }
                                 }
 
@@ -233,26 +218,20 @@ int main() {
                                     switch (seleccionVacuna){
 
                                         case 1:{
-
                                             tieneVacuna = true;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         case 2:{
-
                                             tieneVacuna = false;
                                             boolPerroOK = true;
                                             break;
-
                                         }
 
                                         default:{
-
                                             cout << "El valor ingresado para indicar si el perro tiene vacuna o no es incorrecto. Intentelo nuevamente." << endl;
                                             break;
-
                                         }
 
                                     }
@@ -269,85 +248,68 @@ int main() {
                             }
 
                             case 2: {
-
                                 int seleccionPelo;
                                 TipoPelo tipopelo;
-
                                 bool selGatoOK = false;
-
+                                limpiarPantalla();
                                 while(!selGatoOK){
-
                                     cout << "Que tipo de pelo tiene? (1.Corto; 2.Mediano; 3.Largo): ";
                                     cin >> seleccionPelo;
 
                                     switch (seleccionPelo) {
 
                                         case 1: {
-
                                             tipopelo = Corto;
                                             selGatoOK = true;
                                             break;
-
                                         }
-
                                         case 2: {
-
                                             tipopelo = Mediano;
                                             selGatoOK = true;
                                             break;
-
                                         }
-
                                         case 3: {
-
                                             tipopelo = Largo;
                                             selGatoOK = true;
                                             break;
-
                                         }
                                         default:{
-
                                             cout << "El valor de tipo de pelo seleccionado no es correcto. Intentelo nuevamente." << endl;
                                             break;
-
                                         }
-
                                     }
-
                                 }
 
                                 DtGato dtGato = DtGato(nombreMascota, generoSeleccionado, peso, 0, tipopelo);
                                 registrarSocio(ci, nombre, dtGato);
 
                                 selOK = true;
-
                                 break;
-
                             }
-
                             default:{
-
                                 cout << "El tipo de mascota seleccionada no es correcta. Intente nuevamente." << endl;
                                 break;
-
                             }
-
                         }
-
                     }
-
                     break;
                 }
-
-
                 case 2 : {
+                    limpiarPantalla();
 
                     break;
 
                 }
 
                 case 3 : {
-
+                    limpiarPantalla();
+                    string ingresoMotivo;
+                    string ciSocio;
+                    cout << "Ingrese el motivo de la consulta: ";
+                    cin >> ingresoMotivo;
+                    cout << "Ingrese ci del socio: ";
+                    cin >> ciSocio;
+                    ingresarConsulta(ingresoMotivo,ciSocio);
                     break;
 
                 }
@@ -356,7 +318,7 @@ int main() {
 
                     int dia, mes, anio, cantConsultas;
                     string ciSocio;
-
+                    limpiarPantalla();
                     cout << "Ingrese la CI del socio a consultar: ";
                     cin >> ciSocio;
 
@@ -399,13 +361,13 @@ int main() {
                 }
 
                 case 5: {
-
+                    limpiarPantalla();
                     break;
 
                 }
 
                 case 6: {
-
+                    limpiarPantalla();
                     break;
 
                 }
@@ -435,7 +397,18 @@ int main() {
 
 ///FUNCIONES
 
-/* ****** FUNCIÓN EXISTE SOCIO ****** */
+/**************FUNCIÓN LIMPIAR PANTALLA************/
+
+void limpiarPantalla() {
+    for (int i=0; i < 50; i++) {
+        cout << "\n";
+
+    }
+}
+
+/****************************************************************************************************/
+
+/************* FUNCIÓN EXISTE SOCIO ***************/
 
 void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 
@@ -463,7 +436,7 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
     }
 }
 
-/***********************************************************/
+/****************************************************************************************************/
 
 /********************* INGRESAR CONSULTA********************/
 
@@ -549,6 +522,11 @@ void agregarMascota (string ci, DtMascota& dtMascota){
     }
 }
 */
+
+/************************************************************************************/
+
+
+/* ****** FUNCIÓN CONSULTA ANTES DE FECHA ****** */
 
 DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantConsultas){
 
