@@ -34,30 +34,30 @@ DtFecha::~DtFecha(){}
 
 bool operator< (DtFecha& dtFecha1, DtFecha& dtFecha2 ) {
 
-    if(dtFecha1.getano() <= dtFecha2.getano()){
+    if(dtFecha1.getano() < dtFecha2.getano()) {
 
-        if(dtFecha1.getmes() <= dtFecha2.getmes()){
+        return true;
 
-            if(dtFecha1.getdia() < dtFecha2.getdia()){
+    }else if(dtFecha1.getano() == dtFecha2.getano()){
+
+        if (dtFecha1.getmes() < dtFecha2.getmes()) {
+
+            return true;
+
+        } else if(dtFecha1.getmes() == dtFecha2.getmes()){
+
+            if (dtFecha1.getdia() < dtFecha2.getdia()) {
 
                 return true;
 
-            }else{
+            } else {
 
                 return false;
 
             }
 
-        }else{
+        }else{return false;}
 
-            return false;
-
-        }
-
-    }else{
-
-        return false;
-
-    }
+    }else{return false;}
 
 }
