@@ -41,8 +41,11 @@ struct mascotas {
 //*********** DEFINICION DE FUNCIONES***********
 
 void limpiarPantalla();
+
 void registrarSocio(string ci, string nombre, DtMascota &dtMascota);
-DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantConsultas);
+
+DtConsulta **verConsultaAntesDeFecha(DtFecha &fecha, string ciSocio, int &cantConsultas);
+
 void ingresarConsulta(string motivo, string ci);
 
 //*********************************************
@@ -138,7 +141,7 @@ int main() {
 
                     selOK = false;
 
-                    while(!selOK) {
+                    while (!selOK) {
 
                         cout << "Ingrese tipo de mascota (1.Perro; 2.Gato): ";
                         cin >> seleccionMascota;
@@ -154,9 +157,10 @@ int main() {
 
                                 bool boolPerroOK = false;
 
-                                while(!boolPerroOK) {
+                                while (!boolPerroOK) {
 
-                                    cout << "Ingrese raza (1.Labrador; 2.Ovejero; 3.Bulldog; 4.Pitbull; 5.Collie; 6.Pekines; 7.Otro): ";
+                                    cout
+                                            << "Ingrese raza (1.Labrador; 2.Ovejero; 3.Bulldog; 4.Pitbull; 5.Collie; 6.Pekines; 7.Otro): ";
                                     cin >> seleccionRaza;
 
                                     switch (seleccionRaza) {
@@ -210,27 +214,29 @@ int main() {
 
                                 boolPerroOK = false;
 
-                                while(!boolPerroOK) {
+                                while (!boolPerroOK) {
 
                                     cout << "El perro tiene vacuna? (1.Si; 2.No): ";
                                     cin >> seleccionVacuna;
 
-                                    switch (seleccionVacuna){
+                                    switch (seleccionVacuna) {
 
-                                        case 1:{
+                                        case 1: {
                                             tieneVacuna = true;
                                             boolPerroOK = true;
                                             break;
                                         }
 
-                                        case 2:{
+                                        case 2: {
                                             tieneVacuna = false;
                                             boolPerroOK = true;
                                             break;
                                         }
 
-                                        default:{
-                                            cout << "El valor ingresado para indicar si el perro tiene vacuna o no es incorrecto. Intentelo nuevamente." << endl;
+                                        default: {
+                                            cout
+                                                    << "El valor ingresado para indicar si el perro tiene vacuna o no es incorrecto. Intentelo nuevamente."
+                                                    << endl;
                                             break;
                                         }
 
@@ -238,7 +244,8 @@ int main() {
 
                                 }
 
-                                DtPerro dtPerro = DtPerro(nombreMascota, generoSeleccionado, peso, 0, raza, tieneVacuna);
+                                DtPerro dtPerro = DtPerro(nombreMascota, generoSeleccionado, peso, 0, raza,
+                                                          tieneVacuna);
                                 registrarSocio(ci, nombre, dtPerro);
 
                                 selOK = true;
@@ -252,7 +259,7 @@ int main() {
                                 TipoPelo tipopelo;
                                 bool selGatoOK = false;
                                 limpiarPantalla();
-                                while(!selGatoOK){
+                                while (!selGatoOK) {
                                     cout << "Que tipo de pelo tiene? (1.Corto; 2.Mediano; 3.Largo): ";
                                     cin >> seleccionPelo;
 
@@ -273,8 +280,10 @@ int main() {
                                             selGatoOK = true;
                                             break;
                                         }
-                                        default:{
-                                            cout << "El valor de tipo de pelo seleccionado no es correcto. Intentelo nuevamente." << endl;
+                                        default: {
+                                            cout
+                                                    << "El valor de tipo de pelo seleccionado no es correcto. Intentelo nuevamente."
+                                                    << endl;
                                             break;
                                         }
                                     }
@@ -286,7 +295,7 @@ int main() {
                                 selOK = true;
                                 break;
                             }
-                            default:{
+                            default: {
                                 cout << "El tipo de mascota seleccionada no es correcta. Intente nuevamente." << endl;
                                 break;
                             }
@@ -309,7 +318,7 @@ int main() {
                     cin >> ingresoMotivo;
                     cout << "Ingrese ci del socio: ";
                     cin >> ciSocio;
-                    ingresarConsulta(ingresoMotivo,ciSocio);
+                    ingresarConsulta(ingresoMotivo, ciSocio);
                     break;
 
                 }
@@ -342,10 +351,11 @@ int main() {
                     DtFecha DtFec;
 
                     //for (int i=0; i < cantSocios; i++)
-                    for (int a=0; a <= cantConsultas; a++){
+                    for (int a = 0; a <= cantConsultas; a++) {
 
                         DtFec = arregloConsulta[a]->getfechaConsulta();
-                        numConsulta = a + 1; //Hago esto porque el array empieza en cero, entonces la primera consulta se va a presentar "Consulta 0"
+                        numConsulta = a +
+                                      1; //Hago esto porque el array empieza en cero, entonces la primera consulta se va a presentar "Consulta 0"
 
                         cout << endl << "Consulta " << numConsulta << ":";
                         cout << endl << "Fecha: " << DtFec.getdia() << "/" << DtFec.getmes() << "/" << DtFec.getano();
@@ -353,7 +363,6 @@ int main() {
 
 
                     }
-
 
 
                     break;
@@ -400,7 +409,7 @@ int main() {
 /**************FUNCIÓN LIMPIAR PANTALLA************/
 
 void limpiarPantalla() {
-    for (int i=0; i < 50; i++) {
+    for (int i = 0; i < 50; i++) {
         cout << "\n";
 
     }
@@ -414,9 +423,7 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 
     Socio *nuevoSocio = new Socio(ci, nombre);
     coleccionSocios.socios[coleccionSocios.tope] = nuevoSocio;
-
     coleccionSocios.tope++;
-
 
     try {
         DtGato &dtgato = dynamic_cast<DtGato &>(dtMascota);
@@ -443,8 +450,8 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 void ingresarConsulta(string motivo, string ci) {
     int contador = 0;
     bool encontrado = false;
-    Socio * socio = NULL;
-    while (!encontrado && contador < MAX_SOCIOS){
+    Socio *socio = NULL;
+    while (!encontrado && contador < MAX_SOCIOS) {
         if (coleccionSocios.socios[contador]->getCi() == ci) {
             //encontrado
             socio = coleccionSocios.socios[contador];
@@ -453,16 +460,16 @@ void ingresarConsulta(string motivo, string ci) {
         contador++;
     }
 
-    if(socio == NULL){
+    if (socio == NULL) {
         throw invalid_argument("No existe el socio");
         //error
-    }else{
+    } else {
         //agrego consulta
-        DtFecha fecha = DtFecha(7,5,1991);
-        Consulta *consulta = new Consulta(fecha,motivo);
+        DtFecha fecha = DtFecha(7, 5, 1991);
+        Consulta *consulta = new Consulta(fecha, motivo);
         socio->ingresarConsulta(consulta);
     }
-    
+
 }
 
 /************************************************************************************/
@@ -528,7 +535,7 @@ void agregarMascota (string ci, DtMascota& dtMascota){
 
 /* ****** FUNCIÓN CONSULTA ANTES DE FECHA ****** */
 
-DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantConsultas){
+DtConsulta **verConsultaAntesDeFecha(DtFecha &fecha, string ciSocio, int &cantConsultas) {
 
     bool encontreSocio = false; //encontreSocio va a ser True si se encuentra el socio
     bool noCI = false;          //noCI sera True si se alcanza el tope de Socios, por lo tanto, si no se encontro el Socio por su CI
@@ -545,12 +552,12 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
     cout << "flag 1" << endl;
 
 
-    while( !encontreSocio && !noCI ){
+    while (!encontreSocio && !noCI) {
 
         cout << "flag 2" << endl;
 
         //Busco socio
-        if(coleccionSocios.socios[cont]->getCi() == ciSocio){
+        if (coleccionSocios.socios[cont]->getCi() == ciSocio) {
 
             cout << "flag 3" << endl;
 
@@ -559,15 +566,14 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
         }
 
-        if(encontreSocio) {
+        if (encontreSocio) {
             cout << "flag TRUE" << endl;
-        }
-        else{cout << "flag FALSE" << endl;}
+        } else { cout << "flag FALSE" << endl; }
 
 
         cout << "flag 4" << endl;
 
-        if(!encontreSocio) {
+        if (!encontreSocio) {
 
             if (cont <= coleccionSocios.tope) {
 
@@ -585,7 +591,7 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
     }
 
-    if(encontreSocio){
+    if (encontreSocio) {
 
         Consulta **Con;
         DtFecha DtFec;
@@ -608,7 +614,7 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
         //Mientras no alcance el tope de consultas "cantConsultas" o el tope de consultas del socio (que pueden ser menor al cantConsultas)--
         //--recorro las consultas del socio chequeando si la fecha de ingreso es menor a la ingresada por el usuario.
-        while(!finCons){
+        while (!finCons) {
 
             cout << "flag 9" << endl;
             cout << "flag contCons: " << contCons << endl;
@@ -619,7 +625,7 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
             //Chequeo si la fecha pasada por parametros es menor a la fecha de la consulta--
             //--ver sobrecarga del '<' en el DtFecha.cpp
-            if(DtFec < fecha){
+            if (DtFec < fecha) {
 
                 cout << "flag 11" << endl;
 
@@ -629,15 +635,15 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
             }
 
 
-            if(i < cantConsultas){
+            if (i < cantConsultas) {
 
-                if(contCons < cantCons){
+                if (contCons < cantCons) {
 
                     contCons++;
 
                 }
 
-            }else{
+            } else {
 
                 finCons = true;
 
@@ -648,7 +654,6 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
         return Consultas;
 
     }
-
 
 
 }
