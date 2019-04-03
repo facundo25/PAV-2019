@@ -8,7 +8,7 @@
 #include <dataType/DtGato.h>
 #include <dataType/DtPerro.h>
 #include <dataType/DtConsulta.h>
-#include <codecvt>
+//#include <codecvt>
 #include "dataType/DtFecha.h"
 #include "dataType/DtConsulta.h"
 #include "clases/Socio.h"
@@ -43,9 +43,8 @@ struct mascotas {
 void limpiarPantalla();
 
 void registrarSocio(string ci, string nombre, DtMascota &dtMascota);
-
-DtConsulta **verConsultaAntesDeFecha(DtFecha &fecha, string ciSocio, int &cantConsultas);
-
+DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantConsultas);
+DtMascota** obtenerMascotas(string ciSocio, int& cantMascotas);
 void ingresarConsulta(string motivo, string ci);
 
 //*********************************************
@@ -54,11 +53,11 @@ int main() {
 
     int opcion = 0;
 
-    /*//TESTING - GSM 02/04/19 - Necesitaba un socio con una mascota para testear
+    //TESTING - GSM 02/04/19 - Necesitaba un socio con una mascota para testear
     cout << "[TESTING] Agregando Socio-Mascota para test..." << endl;
     DtGato dtGatotest = DtGato("GATO1", Hembra, 10, 0, Corto);
     registrarSocio("123", "JUAN", dtGatotest);
-    //---*/
+    //---
 
     while (opcion != 99) {
 
@@ -376,7 +375,28 @@ int main() {
                 }
 
                 case 6: {
+                    int cantMascotas;
+                    string ciSocio;
                     limpiarPantalla();
+                    cout << "Ingrese la CI del socio a consultar: ";
+                    cin >> ciSocio;
+
+                    cout << endl << "Ingrese cantidad de mascotas: ";
+                    cin >> cantMascotas;
+
+                    DtMascota **arregloMascotas = obtenerMascotas( ciSocio, cantMascotas);
+
+                    /*
+                    string nombre;
+                    for (int x=0; x <= cantMascotas; x++){
+
+                        //nombre = arregloMascotas[x]->getNombre();
+                        cout << endl << "Nombre: " << arregloMascotas[x]->getNombre();
+//                        cout << endl << "Motivo: " << arregloMascotas[x]->getmotivo();
+
+
+                    }*/
+
                     break;
 
                 }
@@ -460,7 +480,7 @@ void ingresarConsulta(string motivo, string ci) {
         contador++;
     }
 
-    if (socio == NULL) {
+    if(socio == NULL){
         throw invalid_argument("No existe el socio");
         //error
     } else {
@@ -656,6 +676,46 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha &fecha, string ciSocio, int &cantCo
     }
 
 
+}
+
+/* ****** FUNCIÓN OBTERNER MASCOTA ****** */
+
+DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
+    cout << "ENTRO" << endl;
+
+    bool encontreSocio = false; //encontreSocio va a ser True si se encuentra el socio
+    int cont=0;
+
+    while( !encontreSocio && cont<=coleccionSocios.tope ){
+
+        cout << "PASO 2" << endl;
+        cout << coleccionSocios.socios[cont]->getMascotas(cantMascotas) << endl;
+
+
+        //Busco socio
+        if(coleccionSocios.socios[cont]->getCi() == ciSocio){
+
+            cout << "PASO 3" << endl;
+
+            coleccionSocios.socios[cont];
+            encontreSocio = true;
+
+        }
+        else{
+            cont++; // Le sumo para pasar al siguiente cliente
+            cout << "PASO 6" << endl;
+        }
+
+        if(encontreSocio) {
+            cout << "PASO TRUE" << endl;
+        }
+        else{cout << "PASO FALSE" << endl;}
+
+
+        cout << "PASO 4" << endl;
+
+
+    }
 }
 
 ////END FUNCIONES
