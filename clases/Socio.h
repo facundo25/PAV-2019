@@ -43,6 +43,10 @@ public:
 
     Consulta** getConsultas(int &canCon);
 
+    int getTopeMascota();
+
+    int getTopeConsulta();
+
 
     ~Socio();
 
