@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <typeinfo>
 #include <dataType/DtMascota.h>
 #include <dataType/DtGato.h>
@@ -116,7 +117,7 @@ int main() {
 
                     while (!selOK) {
 
-                        cout << "Ingrese genero (1.Hembra; 2.Macho): "; //hacer while con seleccion de genero correcta
+                        cout << "Ingrese genero (1.Hembra; 2.Macho): ";
                         cin >> genero;
 
                         switch (genero) {
@@ -145,7 +146,7 @@ int main() {
                         }
                     }
 
-                    cout << "Ingrese peso: ";
+                    cout << "Ingrese peso en kgs: ";
                     cin >> peso;
 
                     selOK = false;
@@ -258,6 +259,8 @@ int main() {
                                 registrarSocio(ci, nombre, dtPerro);
 
                                 selOK = true;
+
+                                limpiarPantalla();
 
                                 break;
 
