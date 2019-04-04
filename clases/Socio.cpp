@@ -13,6 +13,7 @@ Socio::Socio(string ci, string nombre) {
     DtFecha dtFecha=DtFecha(4,3,1990);
     this -> fechaIngreso = dtFecha;
     this -> topeConsulta = 0;
+    this -> topeMascota = 0;
 }
 
 string Socio::getCi(){

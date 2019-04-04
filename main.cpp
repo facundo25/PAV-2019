@@ -10,6 +10,7 @@
 #include <dataType/DtPerro.h>
 #include <dataType/DtConsulta.h>
 //#include <codecvt>
+#include <stdexcept>
 #include "dataType/DtFecha.h"
 #include "dataType/DtConsulta.h"
 #include "clases/Socio.h"
@@ -560,13 +561,24 @@ int main() {
                     cin >> ciSocio;
 
                     DtMascota **arregloMascotas = obtenerMascotas( ciSocio, cantMascotas);
+                    cout << "PASO 8" << endl;
+                    cout << cantMascotas << endl;
 
+                    for (int x=0; x < cantMascotas; x++){
+                        cout << "PASO 9" << endl;
+                        DtMascota * cadaMascota = arregloMascotas[x];
+                        Perro * perro = dynamic_cast<Perro*> (cadaMascota);
+                        if(perro==NULL){
+                            cout << "PASO 10" << endl;
+                            Gato * gato = dynamic_cast<Gato*> (cadaMascota);
+                            DtGato * dtgato = new DtGato(gato->getNombre(),gato->getGenero(),gato->getPeso(),gato->obtenerRacionDiaria(),gato->gettipoPelo());
+                            cout << endl << "Nombre: " << dtgato[x].getNombre();
 
-                    for (int x=0; x <= cantMascotas; x++){
-
-                        //nombre = arregloMascotas[x]->getNombre();
-                       // cout << endl << "Nombre: " << arregloMascotas[x]->getNombre();
-//                      //  cout << endl << "Motivo: " << arregloMascotas[x]->getmotivo();
+                        }
+                        else{
+                            DtPerro * dtperro = new DtPerro(perro->getNombre(),perro->getGenero(),perro->getPeso(),perro->obtenerRacionDiaria(),perro->getraza(),perro->getvacunaCachorro());
+                            cout << endl << "Nombre: " << dtperro[x].getNombre();
+                        }
 
 
                     }
@@ -906,12 +918,14 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
     }
     if(encontreSocio){
         Mascota ** mascotas = so->getMascotas(cantMascotas);
+        cout << cantMascotas << endl;
 
         DtMascota ** resultado = new DtMascota * [cantMascotas];
-        for(int x=0; x <= cantMascotas; x++){
+        for(int x=0; x < cantMascotas; x++){
             Mascota * cadaMascota = mascotas[x];
             Perro * perro = dynamic_cast<Perro*> (cadaMascota);
             if(perro==NULL){
+                cout << "PASO 7" << endl;
                 Gato * gato = dynamic_cast<Gato*> (cadaMascota);
                 DtGato * dtgato = new DtGato(gato->getNombre(),gato->getGenero(),gato->getPeso(),gato->obtenerRacionDiaria(),gato->gettipoPelo());
                 //
