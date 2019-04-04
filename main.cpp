@@ -514,7 +514,7 @@ int main() {
 
                     DtConsulta **arregloConsulta = verConsultaAntesDeFecha(*fecha, ciSocio, cantConsultas);
 
-                    if(auxCantConsultas != cantConsultas){
+                    if(auxCantConsultas != cantConsultas && arregloConsulta != NULL){
 
                         cout << endl << "La cantidad de consultas a visualizar es superior a las que este socio cuenta. Se visualizaran: " << cantConsultas << "." << endl;
 
@@ -539,6 +539,10 @@ int main() {
                             cout << endl << "Motivo: " << arregloConsulta[a]->getmotivo() << endl;
 
                         }
+
+                    }else {
+
+                        cout << "No existen consultas para la fecha indicada." << endl;
 
                     }
 
@@ -840,14 +844,10 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
                 }
 
+                //Si la cantidad de consultas cargadas 'i' y la cantidad de consultas + 1 (es +1 porque uno tiene cantConsultas va desfasado en 1)
+                if (i < cantConsultas && (contCons + 1 ) < cantConsultas) {
 
-                if (i < cantConsultas && contCons < cantConsultas) { //revisar la logica de este if
-
-                    if (contCons < cantCons) {
-
-                        contCons++;
-
-                    }
+                    contCons++;
 
                 } else {
 
