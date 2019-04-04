@@ -863,6 +863,7 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 }
 
 
+
 /* ****** FUNCIÓN OBTERNER MASCOTA ****** */
 
 DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
