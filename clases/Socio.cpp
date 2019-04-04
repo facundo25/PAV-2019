@@ -12,7 +12,7 @@ Socio::Socio(string ci, string nombre) {
     this -> nombre = nombre;
     DtFecha dtFecha=DtFecha(4,3,1990);
     this -> fechaIngreso = dtFecha;
-    this -> topeConsulta;
+    this -> topeConsulta = 0;
 }
 
 string Socio::getCi(){
@@ -67,3 +67,15 @@ void Socio::ingresarConsulta(Consulta * consulta) {
 }
 
 Socio::~Socio(){}
+
+int Socio::getTopeMascota() {
+
+    return this->topeMascota;
+
+}
+
+int Socio::getTopeConsulta() {
+
+    return this->topeConsulta;
+
+}
