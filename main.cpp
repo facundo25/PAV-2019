@@ -36,6 +36,7 @@ struct mascotas {
     Mascota *mascotas[MAX_MASCOTAS];
     int tope;
 } coleccionMascotas;
+
 bool esGato = false;
 bool esPerro = false;
 
@@ -60,6 +61,12 @@ int main() {
     cout << "[TESTING] Agregando Socio-Mascota para test..." << endl;
     DtGato dtGatotest = DtGato("GATO1", Hembra, 10, 0, Corto);
     registrarSocio("123", "JUAN", dtGatotest);
+    cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
+    ingresarConsulta("motivo1", "123");
+    cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
+    ingresarConsulta("motivo22", "123");
+    cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
+    ingresarConsulta("motivo333", "123");
     //---
 
     while (opcion != 99) {
@@ -307,6 +314,7 @@ int main() {
                     break;
             }
                 case 2 : {
+
                     limpiarPantalla();
 
                     string nombreMascota;
@@ -316,14 +324,17 @@ int main() {
 
                     cout << "\n\tIngrese la CI del socio: \n";
                     cin >> ciSocio;
+
                     cout << "Ingrese el tipo de Mascota (1- Gato, 2-Perro): ";
                     cin >> tipoMascota;
+
                     if (tipoMascota == 1){
                         esGato = true;
                     }
                     else if (tipoMascota == 2) {
                         esPerro = true;
                     }
+
                     cout << "Ingrese el Nombre: ";
                     cin >> nombreMascota;
                     cout << "ingrese genero (1.hembra 2.macho)";
@@ -429,24 +440,34 @@ int main() {
 
                 }
 
-                case 3 : {
+                case 3 : { //INGRESAR CONSULTA
+
                     limpiarPantalla();
+
                     string ingresoMotivo;
                     string ciSocio;
+
                     cout << "Ingrese el motivo de la consulta: ";
-                    cin >> ingresoMotivo;
+                    cin.ignore(); //se usa ignore porque el cout deja en el buffer un \n
+                    getline(cin, ingresoMotivo);
+
                     cout << "Ingrese ci del socio: ";
                     cin >> ciSocio;
+
                     ingresarConsulta(ingresoMotivo, ciSocio);
+
                     break;
 
                 }
 
                 case 4 : {
 
-                    int dia, mes, anio, cantConsultas;
+                    int dia, mes, anio, cantConsultas, auxCantConsultas;
                     string ciSocio;
+                    bool selOK = false;
+
                     limpiarPantalla();
+
                     cout << "Ingrese la CI del socio a consultar: ";
                     cin >> ciSocio;
 
@@ -459,27 +480,61 @@ int main() {
                     cout << endl << "Ingrese el anio: ";
                     cin >> anio;
 
-                    cout << endl << "Ingrese la cantidad maxima de consultas a mostrar: ";
-                    cin >> cantConsultas;
+                    while(!selOK){
+
+                        cout << endl << "Ingrese la cantidad maxima de consultas a mostrar: ";
+                        cin >> cantConsultas;
+
+                        if(cantConsultas == 0){
+
+                            cout << "Debe ingresar un numero mayor a cero" << endl;
+
+                        }else if(cantConsultas > 20){
+
+                            cout << "Un socio no puede tener mas de veinte consultas" << endl;
+
+                        }else if(cantConsultas < 0){
+
+                            cout << "Por favor, ingrese un numero correcto" << endl;
+
+                        } else{
+
+                            selOK = true;
+
+                        }
+                    }
+
+                    auxCantConsultas = cantConsultas;
 
                     DtFecha *fecha = new DtFecha(dia, mes, anio);
 
                     DtConsulta **arregloConsulta = verConsultaAntesDeFecha(*fecha, ciSocio, cantConsultas);
 
-                    int numConsulta = 0;
-                    DtFecha DtFec;
+                    if(auxCantConsultas != cantConsultas){
 
-                    //for (int i=0; i < cantSocios; i++)
-                    for (int a = 0; a <= cantConsultas; a++) {
+                        cout << endl << "La cantidad de consultas a visualizar es superior a las que este socio cuenta. Se visualizaran: " << cantConsultas << "." << endl;
 
-                        DtFec = arregloConsulta[a]->getfechaConsulta();
-                        numConsulta = a +
-                                      1; //Hago esto porque el array empieza en cero, entonces la primera consulta se va a presentar "Consulta 0"
+                    }
 
-                        cout << endl << "Consulta " << numConsulta << ":";
-                        cout << endl << "Fecha: " << DtFec.getdia() << "/" << DtFec.getmes() << "/" << DtFec.getano();
-                        cout << endl << "Motivo: " << arregloConsulta[a]->getmotivo();
+                    if (arregloConsulta != NULL) {
 
+                        int numConsulta = 0;
+                        DtFecha DtFec;
+                        int cantConsFinal = 0;
+
+
+                        for (int a = 0; a < cantConsultas; a++) {
+
+                            DtFec = arregloConsulta[a]->getfechaConsulta();
+                            numConsulta = a + 1; //Hago esto porque el array empieza en cero, entonces la primera consulta se va a presentar "Consulta 0"
+
+
+                            cout << endl << "Consulta " << numConsulta << ":";
+                            cout << endl << "Fecha: " << DtFec.getdia() << "/" << DtFec.getmes() << "/"
+                                 << DtFec.getano();
+                            cout << endl << "Motivo: " << arregloConsulta[a]->getmotivo() << endl;
+
+                        }
 
                     }
 
@@ -583,24 +638,34 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 void ingresarConsulta(string motivo, string ci) {
     int contador = 0;
     bool encontrado = false;
+
     Socio *socio = NULL;
+
     while (!encontrado && contador < MAX_SOCIOS) {
+
         if (coleccionSocios.socios[contador]->getCi() == ci) {
+
             //encontrado
             socio = coleccionSocios.socios[contador];
             encontrado = true;
+
         }
+
         contador++;
     }
 
     if(socio == NULL){
+
         throw invalid_argument("No existe el socio");
         //error
+
     } else {
+
         //agrego consulta
         DtFecha fecha = DtFecha(7, 5, 1991);
         Consulta *consulta = new Consulta(fecha, motivo);
         socio->ingresarConsulta(consulta);
+
     }
 
 }
@@ -682,45 +747,32 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
     Socio *Soc;
 
-    cout << "flag 1" << endl;
-
 
     while (!encontreSocio && !noCI) {
 
-        cout << "flag 2" << endl;
-
         //Busco socio
         if (coleccionSocios.socios[cont]->getCi() == ciSocio) {
-
-            cout << "flag 3" << endl;
 
             Soc = coleccionSocios.socios[cont];
             encontreSocio = true;
 
         }
 
-        if (encontreSocio) {
-            cout << "flag TRUE" << endl;
-        } else { cout << "flag FALSE" << endl; }
-
-
-        cout << "flag 4" << endl;
 
         if (!encontreSocio) {
 
-            if (cont <= coleccionSocios.tope) {
+            if (cont < coleccionSocios.tope) {
 
                 cont++;
 
             } else {
 
-                cout << endl << "No se encontro el socio con la CI ingresada";
+                cout << endl << "No se encontro el socio con la CI ingresada" << endl;
                 noCI = true;
 
             }
-        }
 
-        cout << "flag 5" << endl;
+        }
 
     }
 
@@ -731,58 +783,78 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
         int i; //Contador
         int dia, mes, anio;
 
-        cout << "flag cantConsultas: " << cantConsultas << endl;
+        if(coleccionSocios.socios[cont]->getTopeConsulta() == 0){
 
-        cout << "flag 6" << endl;
+            cout << "El socio no ha tenido ninguna consulta aun." << endl;
+            DtConsulta **Consultas = NULL;
 
-        DtConsulta **Consultas = new DtConsulta *[cantConsultas]; //Creo el array para devolver con tope = "cantConsultas" ingresada por el usuario
+            return Consultas;
 
-        cout << "flag 7" << endl;
+        }else {
 
-        //Usando "getConsulta" obtengo el array de consultas-socio por el return y el tope por parametro
-        //Obtengo las consultas del socio
-        Con = coleccionSocios.socios[cont]->getConsultas(cantCons);
+            //Usando "getConsulta" obtengo el array de consultas-socio por el return y el tope por parametro
+            //Obtengo las consultas del socio
+            Con = coleccionSocios.socios[cont]->getConsultas(cantCons);
 
-        cout << "flag 8" << endl;
+            DtConsulta **Consultas = NULL;
 
-        //Mientras no alcance el tope de consultas "cantConsultas" o el tope de consultas del socio (que pueden ser menor al cantConsultas)--
-        //--recorro las consultas del socio chequeando si la fecha de ingreso es menor a la ingresada por el usuario.
-        while (!finCons) {
+            //Si la cantidad de consultas a mostrar (ingresdo por el usuario) es mayor a al cantidad de consultas que existen--
+            //-- el tamanio del "Consultas" a devolver va a ser igual al tope.
+            if (cantConsultas > coleccionSocios.socios[cont]->getTopeConsulta()) {
 
-            cout << "flag 9" << endl;
-            cout << "flag contCons: " << contCons << endl;
-
-            DtFec = Con[contCons]->getfechaConsulta();
-
-            cout << "flag 10" << endl;
-
-            //Chequeo si la fecha pasada por parametros es menor a la fecha de la consulta--
-            //--ver sobrecarga del '<' en el DtFecha.cpp
-            if (DtFec < fecha) {
-
-                cout << "flag 11" << endl;
-
-                Consultas[i] = new DtConsulta(Con[contCons]->getfechaConsulta(), Con[contCons]->getmotivo());
-                i++;
+                cantConsultas = coleccionSocios.socios[cont]->getTopeConsulta();
 
             }
 
+            Consultas = new DtConsulta *[cantConsultas]; //Creo el array para devolver con tope = "cantConsultas" ingresada por el usuario
 
-            if (i < cantConsultas) {
+            i = 0;
 
-                if (contCons < cantCons) {
+            //Mientras no alcance el tope de consultas "cantConsultas" o el tope de consultas del socio (que pueden ser menor al cantConsultas)--
+            //--recorro las consultas del socio chequeando si la fecha de ingreso es menor a la ingresada por el usuario.
+            while (!finCons) {
 
-                    contCons++;
+                DtFec = Con[contCons]->getfechaConsulta();
+
+                //Chequeo si la fecha pasada por parametros es menor a la fecha de la consulta--
+                //--ver sobrecarga del '<' en el DtFecha.cpp
+                if (DtFec < fecha) {
+
+                    Consultas[i] = new DtConsulta(Con[contCons]->getfechaConsulta(), Con[contCons]->getmotivo());
+                    i++;
 
                 }
 
-            } else {
 
-                finCons = true;
+                if (i < cantConsultas && contCons < cantConsultas) { //revisar la logica de este if
+
+                    if (contCons < cantCons) {
+
+                        contCons++;
+
+                    }
+
+                } else {
+
+                    if (i == 0) { //Si no cargo nada, vuelvo la variable a retornar a NULL
+
+                        Consultas = NULL;
+
+                    }
+
+                    finCons = true;
+
+                }
 
             }
 
+            return Consultas;
+
         }
+
+    }else{ //No encontre socio: cargo la cantidad de consultas como 0 mark
+
+        DtConsulta **Consultas = NULL;
 
         return Consultas;
 
@@ -790,7 +862,6 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
 }
 
-}
 
 /* ****** FUNCIÓN OBTERNER MASCOTA ****** */
 
