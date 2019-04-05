@@ -29,12 +29,11 @@ using namespace std;
 struct socios { //coleccion de socios
 
     Socio *socios[MAX_SOCIOS];
-    int tope;
+    int tope = 0;
 } coleccionSocios;
 
 
 struct mascotas {
-
     Mascota *mascotas[MAX_MASCOTAS];
     int tope;
 } coleccionMascotas;
@@ -52,7 +51,7 @@ DtConsulta** verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 DtMascota** obtenerMascotas(string ciSocio, int& cantMascotas);
 void ingresarConsulta(string motivo, string ci);
 void agregarMascota(string ci, DtMascota& Mascota);
-
+void eliminarSocio(string ci);
 //*********************************************
 
 int main() {
@@ -89,7 +88,6 @@ int main() {
         cin >> opcion;
 
         cout << "---------------------------------------" << endl;
-        coleccionSocios.tope = 0;
         switch (opcion) {
 
             case 1 : {
@@ -561,26 +559,11 @@ int main() {
                     cin >> ciSocio;
 
                     DtMascota **arregloMascotas = obtenerMascotas( ciSocio, cantMascotas);
-                    cout << "PASO 8" << endl;
-                    cout << cantMascotas << endl;
+
 
                     for (int x=0; x < cantMascotas; x++){
-                        cout << "PASO 9" << endl;
-                        DtMascota * cadaMascota = arregloMascotas[x];
-                        Perro * perro = dynamic_cast<Perro*> (cadaMascota);
-                        if(perro==NULL){
-                            cout << "PASO 10" << endl;
-                            Gato * gato = dynamic_cast<Gato*> (cadaMascota);
-                            DtGato * dtgato = new DtGato(gato->getNombre(),gato->getGenero(),gato->getPeso(),gato->obtenerRacionDiaria(),gato->gettipoPelo());
-                            cout << endl << "Nombre: " << dtgato[x].getNombre();
 
-                        }
-                        else{
-                            DtPerro * dtperro = new DtPerro(perro->getNombre(),perro->getGenero(),perro->getPeso(),perro->obtenerRacionDiaria(),perro->getraza(),perro->getvacunaCachorro());
-                            cout << endl << "Nombre: " << dtperro[x].getNombre();
-                        }
-
-
+                         cout << *(arregloMascotas[x]) << endl;
                     }
 
                     break;
@@ -690,27 +673,34 @@ void ingresarConsulta(string motivo, string ci) {
 
 /* ****** FUNCIÓN EXISTE SOCIO ****** */
 
-void existeSocio (string ci){
+Socio * existeSocio (string ci){
+    Socio* socio=NULL;
     int indice = 0;
     bool existe = false ;
-    while (existe == false && indice < coleccionSocios.tope ){
+    while (existe == false && indice <= coleccionSocios.tope ){
         if (coleccionSocios.socios[indice]->getCi() == ci) {
+            socio=coleccionSocios.socios[indice];
             existe = true;
         } else {
             indice ++;
         }
 
     }
-    if (!existe)
+    if (socio==NULL) {
         throw invalid_argument("\n No existe socio");
+    }
+    else{
+        return socio;
+    }
 }
 
 
 /* FUNCIÓN AGREGAR MASCOTA */
 
 void agregarMascota (string ci, DtMascota& Mascota){
+    Socio * socio=NULL;
     try {
-        existeSocio(ci);
+        socio=existeSocio(ci);
         if (esPerro){
             try {
                 DtPerro& perro = dynamic_cast<DtPerro&> (Mascota);
@@ -882,13 +872,20 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 /* ****** FUNCIÓN OBTERNER MASCOTA ****** */
 
 DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
-    cout << "ENTRO" << endl;
     cantMascotas=0;
     bool encontreSocio = false; //encontreSocio va a ser True si se encuentra el socio
     int cont=0;
     Socio * so=NULL;
 
-    while( !encontreSocio && cont<=coleccionSocios.tope ){
+
+    try {
+        so=existeSocio(ciSocio);
+        encontreSocio=true;
+    }catch(invalid_argument& e){
+        cout << e.what() << endl;
+    }
+
+    /*while( !encontreSocio && cont<=coleccionSocios.tope ){
 
         cout << "PASO 2" << endl;
         //cout << coleccionSocios.socios[cont]->getMascotas(cantMascotas) << endl;
@@ -905,17 +902,18 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
         }
         else{
             cont++; // Le sumo para pasar al siguiente cliente
-            cout << "PASO 6" << endl;
+
         }
 
         if(encontreSocio) {
-            cout << "PASO TRUE" << endl;
+
         }
-        else{cout << "PASO FALSE" << endl;}
+        else{
 
+        }
 
-        cout << "PASO 4" << endl;
     }
+     */
     if(encontreSocio){
         Mascota ** mascotas = so->getMascotas(cantMascotas);
         cout << cantMascotas << endl;
@@ -925,7 +923,6 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
             Mascota * cadaMascota = mascotas[x];
             Perro * perro = dynamic_cast<Perro*> (cadaMascota);
             if(perro==NULL){
-                cout << "PASO 7" << endl;
                 Gato * gato = dynamic_cast<Gato*> (cadaMascota);
                 DtGato * dtgato = new DtGato(gato->getNombre(),gato->getGenero(),gato->getPeso(),gato->obtenerRacionDiaria(),gato->gettipoPelo());
                 //
@@ -940,6 +937,16 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
 
     }
 }
+
+/****************************************************************************************************/
+
+/************* FUNCIÓN ELIMINAR SOCIO ***************/
+
+void eliminarSocio(string ci);
+
+
+
+///////
 
 
 ////END FUNCIONES

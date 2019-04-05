@@ -39,6 +39,7 @@ public:
 	void setRacionDiaria(float);
 
 	virtual ~DtMascota();
+    friend ostream& operator<<(ostream &os, DtMascota&);
 
 };
 

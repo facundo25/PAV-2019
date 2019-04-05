@@ -36,3 +36,11 @@ float DtMascota::getRacionDiaria(){
 DtMascota::~DtMascota(){
 
 }
+ostream& operator << (ostream &salida, DtMascota& dtMascota) {
+    salida <<
+                     "Nombre: " << dtMascota.nombre <<"\n"<<
+                     "Genero: " << dtMascota.genero <<"\n"<<
+                     "Peso: " << dtMascota.peso <<endl;
+    return salida;
+
+}
