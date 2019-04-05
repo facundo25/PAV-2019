@@ -17,7 +17,7 @@
 
 using namespace std;
 
-class DtMascota : public error_code {
+class DtMascota{
 protected:
 	string nombre;
 	Genero genero;

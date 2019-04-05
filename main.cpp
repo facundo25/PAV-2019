@@ -71,7 +71,7 @@ int main() {
 /*
  * HARDCODEO DE DATOS PARA PRUEBAS*/
 
-    cout << "[DATOS HARDCODEADOS " << endl;
+    cout << "[DATOS HARDCODEADOS] " << endl;
     DtGato dtGatotest = DtGato("GATO1", Hembra, 10, 0, Corto);
     DtGato dtGatotest2 = DtGato("GATO2", Macho, 20, 0, Largo);
     DtPerro dtPerrotest1= DtPerro("PERRO1",Macho,8,0,collie, true);
@@ -485,6 +485,7 @@ int main() {
                 cout << "Ingrese ci del socio: ";
                 cin >> ciSocio;
                 ingresarConsulta(ingresoMotivo, ciSocio);
+                cout<< SH_BG_LIGHT_BLUE<< "CONSULTA AGREGADA"<< SH_DEFAULT<< endl;
                 break;
 
             }
