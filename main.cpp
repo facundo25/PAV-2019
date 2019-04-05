@@ -700,8 +700,7 @@ Socio * existeSocio (string ci){
     int indice = 0;
     bool existe = false ;
     while (existe == false && indice < coleccionSocios.tope ){
-        if (coleccionSocios.socios[indice]->getCi().compare(ci)) {
-
+        if (coleccionSocios.socios[indice]->getCi().compare(ci) == 0) {
             socio=coleccionSocios.socios[indice];
             existe = true;
         } else {
@@ -709,7 +708,7 @@ Socio * existeSocio (string ci){
         }
 
     }
-    if (socio) {
+    if (socio==NULL) {
         throw invalid_argument("\n No existe socio");
     }
     else{
@@ -939,7 +938,7 @@ void eliminarSocio(string ci){
     try {
         socio=existeSocio(ci);
         for(indice1; indice1 < coleccionSocios.tope; indice1++){
-            if(coleccionSocios.socios[indice1]->getCi().compare(ci)){
+            if(coleccionSocios.socios[indice1]->getCi().compare(ci) == 0){
                 coleccionSocios.socios[indice1] =  coleccionSocios.socios[coleccionSocios.tope-1];
                 coleccionSocios.tope--;
                 cout << "Socio borrado.." << endl;
