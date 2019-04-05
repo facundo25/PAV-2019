@@ -90,23 +90,24 @@ int main() {
     registrarSocio("987", "DANIELA", dtPerrotest3);
     //CONSULTAS
     cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
-    ingresarConsulta("GARRAPATAS", "123");
+ //   ingresarConsulta("GARRAPATAS", "123");
     cout << "[TESTING] Agregando Consulta para socio 456 para test..." << endl;
-    ingresarConsulta("VOMITOS", "456");
-    cout << "[TESTING] Agregando Consulta para socio 456 para test..." << endl;
-    ingresarConsulta("VACUNAS", "456");
+    //ingresarConsulta("VOMITOS", "456");
+    //   cout << "[TESTING] Agregando Consulta para socio 456 para test..." << endl;
+    //ingresarConsulta("VACUNAS", "456");
     cout << "[TESTING] Agregando Consulta para socio 789 para test..." << endl;
-    ingresarConsulta("CASTRACION", "789");
+    //ingresarConsulta("CASTRACION", "789");
     cout << "[TESTING] Agregando Consulta para socio 789 para test..." << endl;
-    ingresarConsulta("EXAMENES", "789");
+    //ingresarConsulta("EXAMENES", "789");
     cout << "[TESTING] Agregando Consulta para socio 789 para test..." << endl;
-    ingresarConsulta("CORTE DE PELO", "789");
+    //ingresarConsulta("CORTE DE PELO", "789");
     cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
-    ingresarConsulta("EXAMENES", "123");
+    //ingresarConsulta("EXAMENES", "123");
     cout << "[TESTING] Agregando Consulta para socio 321 para test..." << endl;
-    ingresarConsulta("EXAMENES", "321");
+    //ingresarConsulta("EXAMENES", "321");
     cout << "[TESTING] Agregando Consulta para socio 321 para test..." << endl;
-    ingresarConsulta("CORTE DE PELO", "321");
+    //
+    // ingresarConsulta("CORTE DE PELO", "321");
 
 /*
  * FIN DE HARDCODEO DE DATOS PARA PRUEBAS/
@@ -484,7 +485,12 @@ int main() {
                 getline(cin, ingresoMotivo);
                 cout << "Ingrese ci del socio: ";
                 cin >> ciSocio;
-                ingresarConsulta(ingresoMotivo, ciSocio);
+                try {
+                    ingresarConsulta(ingresoMotivo, ciSocio);
+                }catch (invalid_argument &e) {
+                    cout << e.what() << endl;
+
+                }
                 cout<< SH_BG_LIGHT_BLUE<< "CONSULTA AGREGADA"<< SH_DEFAULT<< endl;
                 break;
 
@@ -598,8 +604,9 @@ int main() {
                     }
                 } catch (invalid_argument &e) {
                     cout << e.what() << endl;
-                    break;
+
                 }
+                break;
             }
 
             case 99: {
@@ -654,28 +661,9 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 /********************* INGRESAR CONSULTA********************/
 
 void ingresarConsulta(string motivo, string ci) {
-    int contador = 0;
-    bool encontrado = false;
-
     Socio *socio = NULL;
-
-    while (!encontrado && contador < MAX_SOCIOS) {
-
-        if (coleccionSocios.socios[contador]->getCi() == ci) {
-
-            //encontrado
-            socio = coleccionSocios.socios[contador];
-            encontrado = true;
-
-        }
-
-        contador++;
-    }
-
     if(socio == NULL){
-
         throw invalid_argument("No existe el socio");
-
     } else {
 
         //agrego consulta
