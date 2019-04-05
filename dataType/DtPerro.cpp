@@ -13,9 +13,11 @@ DtPerro::~DtPerro(){
 ostream& operator << (ostream &salida, DtPerro& dtPerro) {
     salida <<
         "Nombre: " << dtPerro.nombre << "\n" <<
-        "Genero: " << dtPerro.genero << "\n"
-        "Peso: " << dtPerro.peso << "\n"
-        "Racion diaria: " << dtPerro.racionDiaria << endl;
+        "Genero: " << dtPerro.genero << "\n"<<
+        "Peso: " << dtPerro.peso << "\n"<<
+        "Racion diaria: " << dtPerro.racionDiaria << "\n"<<
+        "Raza: " << dtPerro.raza << "\n"<<
+        "Tiene vacuna: " <<dtPerro.vacunaCachorro <<endl;
     return salida;
 }
 

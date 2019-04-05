@@ -568,12 +568,24 @@ int main() {
                     cout << "Ingrese la CI del socio a consultar: ";
                     cin >> ciSocio;
 
+                    cout << "Ingresar la cantidad de mascotas a visualizar: ";
+                    cin >> cantMascotas;
+
                     DtMascota **arregloMascotas = obtenerMascotas( ciSocio, cantMascotas);
 
 
                     for (int x=0; x < cantMascotas; x++){
 
-                         cout << *(arregloMascotas[x]) << endl;
+                         //cout << *(arregloMascotas[x]) << endl;
+                         DtPerro * dtPerro= dynamic_cast<DtPerro*>(arregloMascotas[x]);
+                         if(dtPerro!=NULL){
+                             cout<< dtPerro <<endl;
+                         }
+                         else{
+                             DtGato * dtGato= dynamic_cast<DtGato*>(arregloMascotas[x]);
+
+                             cout<< *(dtGato) <<endl;
+                         }
                     }
 
                     break;
@@ -689,6 +701,7 @@ Socio * existeSocio (string ci){
     bool existe = false ;
     while (existe == false && indice < coleccionSocios.tope ){
         if (coleccionSocios.socios[indice]->getCi().compare(ci)) {
+
             socio=coleccionSocios.socios[indice];
             existe = true;
         } else {
@@ -877,7 +890,6 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 /* ****** FUNCIÓN OBTERNER MASCOTA ****** */
 
 DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
-    cantMascotas=0;
     bool encontreSocio = false; //encontreSocio va a ser True si se encuentra el socio
     int cont=0;
     Socio * so=NULL;
@@ -889,39 +901,13 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
     }catch(invalid_argument& e){
         cout << e.what() << endl;
     }
-
-    /*while( !encontreSocio && cont<=coleccionSocios.tope ){
-
-        cout << "PASO 2" << endl;
-        //cout << coleccionSocios.socios[cont]->getMascotas(cantMascotas) << endl;
-
-
-        //Busco socio
-        if(coleccionSocios.socios[cont]->getCi() == ciSocio){
-
-            cout << "PASO 3" << endl;
-
-            so=coleccionSocios.socios[cont];
-            encontreSocio = true;
-
-        }
-        else{
-            cont++; // Le sumo para pasar al siguiente cliente
-
-        }
-
-        if(encontreSocio) {
-
-        }
-        else{
-
-        }
-
-    }
-     */
     if(encontreSocio){
-        Mascota ** mascotas = so->getMascotas(cantMascotas);
-        cout << cantMascotas << endl;
+        int topeMascota;
+        Mascota ** mascotas = so->getMascotas(topeMascota);
+        if(cantMascotas>topeMascota) {
+            cantMascotas=topeMascota;
+        }
+
 
         DtMascota ** resultado = new DtMascota * [cantMascotas];
         for(int x=0; x < cantMascotas; x++){
