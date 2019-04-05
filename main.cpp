@@ -570,26 +570,28 @@ int main() {
 
                     cout << "Ingresar la cantidad de mascotas a visualizar: ";
                     cin >> cantMascotas;
+                    try {
+                        if ((existeSocio(ciSocio)) != NULL) {
+                            DtMascota **arregloMascotas = obtenerMascotas(ciSocio, cantMascotas);
 
-                    DtMascota **arregloMascotas = obtenerMascotas( ciSocio, cantMascotas);
+                            for (int x = 0; x < cantMascotas; x++) {
+                                //cout << *(arregloMascotas[x]) << endl;
+                                DtPerro *dtPerro = dynamic_cast<DtPerro *>(arregloMascotas[x]);
+                                if (dtPerro != NULL) {
+                                    cout << dtPerro << endl;
+                                } else {
+                                    DtGato *dtGato = dynamic_cast<DtGato *>(arregloMascotas[x]);
 
+                                    cout << *(dtGato) << endl;
+                                }
+                            }
 
-                    for (int x=0; x < cantMascotas; x++){
+                        }
+                    } catch (invalid_argument &e) {
+                        cout << e.what() << endl;
+                        break;
 
-                         //cout << *(arregloMascotas[x]) << endl;
-                         DtPerro * dtPerro= dynamic_cast<DtPerro*>(arregloMascotas[x]);
-                         if(dtPerro!=NULL){
-                             cout<< dtPerro <<endl;
-                         }
-                         else{
-                             DtGato * dtGato= dynamic_cast<DtGato*>(arregloMascotas[x]);
-
-                             cout<< *(dtGato) <<endl;
-                         }
                     }
-
-                    break;
-
                 }
 
                 case 99: {
