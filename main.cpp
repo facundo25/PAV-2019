@@ -4,8 +4,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include "ui/shellColors.h"
 #include <typeinfo>
-#include <dataType/DtMascota.h>
+#include "dataType/DtMascota.h"
 #include <dataType/DtGato.h>
 #include <dataType/DtPerro.h>
 #include <dataType/DtConsulta.h>
@@ -26,6 +27,9 @@
 
 using namespace std;
 
+/**
+ * Estructuras de socios y mascotas
+ */
 struct socios { //coleccion de socios
 
     Socio *socios[MAX_SOCIOS];
@@ -42,7 +46,9 @@ bool esGato = false;
 bool esPerro = false;
 
 
-//*********** DEFINICION DE FUNCIONES***********
+/**
+ * DEFINICION DE FUNCIONES SOLICITADAS Y AUXILIARES
+ */
 
 void limpiarPantalla();
 
@@ -53,15 +59,23 @@ void ingresarConsulta(string motivo, string ci);
 void agregarMascota(string ci, DtMascota& Mascota);
 void eliminarSocio(string ci);
 Socio * existeSocio (string ci);
-//*********************************************
+
+/**
+ * FIN DE DEFINCION DE FUNCIONES
+ **/
 
 int main() {
 
     int opcion = 0;
 
     //TESTING - GSM 02/04/19 - Necesitaba un socio con una mascota para testear
-    cout << "[TESTING] Agregando Socio-Mascota para test..." << endl;
+    cout << "[DATOS HARDCODEADOS " << endl;
     DtGato dtGatotest = DtGato("GATO1", Hembra, 10, 0, Corto);
+    DtGato dtGatotest2 = DtGato("GATO2", Macho, 20, 0, Largo);
+    DtGato dtGatotest3 = DtGato("GATO3", Hembra, 8, 0, Mediano);
+    //DtPerro dtPerro = DtPerro("PERRO1", Macho, 22, 0, 1 ,true ) DtPerro dtPerro = DtPerro(nombreMascota, generoSeleccionado, peso, 0, raza, tieneVacuna);
+
+
     registrarSocio("123", "JUAN", dtGatotest);
     cout << "[TESTING] Agregando Consulta para socio 123 para test..." << endl;
     ingresarConsulta("motivo1", "123");
@@ -73,10 +87,9 @@ int main() {
 
     while (opcion != 99) {
 
-        cout << "---------------------------------------" << endl;
-        cout << "--PROGRAMACIÓN AVANZADA - LABORATORIO 0-\n"
-                "==========VETERINARIA LA NUTRIA=========" << endl;
-        cout << "---------------------------------------" << endl;
+        cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
+        cout << SH_FG_GREEN<< "--PROGRAMACIÓN AVANZADA - LABORATORIO 0-\n"SH_DEFAULT << endl;
+        cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
         cout << "1. Registrar socio" << endl;
         cout << "2. Agregar mascota" << endl;
         cout << "3. Ingresar consulta" << endl;
@@ -138,7 +151,7 @@ int main() {
                             }
                             default: {
 
-                                cout << "El genero seleccionado no es valido. Intente nuevamente" << endl;
+                                cout << SH_FG_RED << "El genero seleccionado no es valido. Intente nuevamente" << SH_DEFAULT <<endl;
                                 break;
 
                             }
@@ -216,7 +229,7 @@ int main() {
                                         }
 
                                         default: {
-                                            cout << "La raza ingresada no es correcta. Ingrese nuevamente." << endl;
+                                            cout << SH_FG_RED <<"La raza ingresada no es correcta. Ingrese nuevamente." << SH_DEFAULT << endl;
                                             break;
                                         }
                                     }
@@ -243,10 +256,9 @@ int main() {
                                             break;
                                         }
 
-                                        default: {
-                                            cout
-                                                    << "El valor ingresado para indicar si el perro tiene vacuna o no es incorrecto. Intentelo nuevamente."
-                                                    << endl;
+                                        default: {//        cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
+
+                                            cout << SH_FG_RED << "El valor ingresado para indicar si el perro tiene vacuna o no es incorrecto. Intentelo nuevamente."<<SH_DEFAULT << endl;
                                             break;
                                         }
 
@@ -294,8 +306,8 @@ int main() {
                                         }
                                         default: {
                                             cout
-                                                    << "El valor de tipo de pelo seleccionado no es correcto. Intentelo nuevamente."
-                                                    << endl;
+                                                    <<SH_FG_RED << "El valor de tipo de pelo seleccionado no es correcto. Intentelo nuevamente."
+                                                    SH_DEFAULT<< endl;
                                             break;
                                         }
                                     }
@@ -575,10 +587,9 @@ int main() {
                             DtMascota **arregloMascotas = obtenerMascotas(ciSocio, cantMascotas);
 
                             for (int x = 0; x < cantMascotas; x++) {
-                                //cout << *(arregloMascotas[x]) << endl;
                                 DtPerro *dtPerro = dynamic_cast<DtPerro *>(arregloMascotas[x]);
                                 if (dtPerro != NULL) {
-                                    cout << dtPerro << endl;
+                                    cout << *(dtPerro) << endl;
                                 } else {
                                     DtGato *dtGato = dynamic_cast<DtGato *>(arregloMascotas[x]);
 
@@ -956,7 +967,6 @@ void eliminarSocio(string ci){
 
 
 
-///////
 
 
 ////END FUNCIONES

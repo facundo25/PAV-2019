@@ -6,10 +6,8 @@ using namespace std;
 
 DtGato::DtGato() {}
 
-DtGato::DtGato(string nombre, Genero genero, float peso, float racionDiaria, TipoPelo tipopelo) : DtMascota(nombre,
-                                                                                                            genero,
-                                                                                                            peso,
-                                                                                                            racionDiaria) {
+DtGato::DtGato(string nombre, Genero genero, float peso, float racionDiaria, TipoPelo tipopelo) : DtMascota(nombre, genero, peso, racionDiaria) {
+
     this->tipopelo = tipopelo;
 }
 
