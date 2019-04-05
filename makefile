@@ -1,29 +1,38 @@
-principal: Consulta.o  DtConsulta.o DtFecha.o DtGato.o  DtMascota.o DtPerro.o Gato.o main.o Mascota.o Perro.o RazaPerro.o Socio.o
-	g++ Consulta.o  DtConsulta.o DtFecha.o DtGato.o  DtMascota.o DtPerro.o Gato.o main.o Mascota.o Perro.o RazaPerro.o Socio.o -o veterinaria
+principal:  DtConsulta.o DtFecha.o DtGato.o  DtMascota.o DtPerro.o Gato.o main.o Mascota.o Perro.o Socio.o Consulta.o
+	g++ DtConsulta.o DtFecha.o DtGato.o  DtMascota.o DtPerro.o Gato.o main.o Mascota.o Perro.o Socio.o Consulta.o -o veterinaria
 
-Consulta.o: Consulta.cpp
+DtConsulta.o: dataType/DtConsulta.cpp
+	g++ -c dataType/DtConsulta.cpp -o DtConsulta.o
 
-DtConsulta.o: DtConsulta.cpp
+DtFecha.o: dataType/DtFecha.cpp
+	g++ -c dataType/DtFecha.cpp -o DtFecha.o
 
-DtFecha.o: DtFecha.cpp
+DtGato.o: dataType/DtGato.cpp
+	g++ -c dataType/DtGato.cpp -o DtGato.o
 
-DtGato.o: DtGato.cpp
+DtMascota.o: dataType/DtMascota.cpp
+	g++ -c dataType/DtMascota.cpp -o DtMascota.o
 
-DtMascota.o: DtMascota.cpp
+DtPerro.o: dataType/DtPerro.cpp
+	g++ -c dataType/DtPerro.cpp -o DtPerro.o
 
-DtPerro.o: DtPerro.cpp
-
-Gato.o: Gato.cpp
+Gato.o: clases/Gato.cpp
+	g++ -c clases/Gato.cpp -o Gato.o
 
 main.o: main.cpp
+	g++ -c main.cpp -o main.o
 
-Mascota.o: Mascota.cpp
+Mascota.o: clases/Mascota.cpp
+	g++ -c clases/Mascota.cpp -o Mascota.o
 
-Perro.o: Perro.cpp
+Perro.o: Clases/Perro.cpp
+	g++ -c clases/Perro.cpp -o Perro.o
 
-RazaPerro.o: RazaPerro.cpp
+Socio.o: clases/Socio.cpp
+	g++ -c clases/Socio.cpp -o Socio.o
 
-Socio.o: Socio.cpp
+Consulta.o: clases/Consulta.cpp
+	g++ -c clases/Consulta.cpp -o Consulta.o
 
-clean: 
+clean:
 	rm -rf *.o veterinaria

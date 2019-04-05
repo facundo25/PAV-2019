@@ -1,9 +1,10 @@
 //
 // Created by gsoto on 25/03/2019.
 //
-#include "Gato.h"
-#include "enum/TipoPelo.h"
-#include "Mascota.h"
+#include "../clases/Gato.h"
+#include "../enum/TipoPelo.h"
+#include "../clases/Mascota.h"
+#include "../enum/Genero.h"
 #include <iostream>
 
 Gato::Gato(){}

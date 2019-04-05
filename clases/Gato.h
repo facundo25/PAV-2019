@@ -5,7 +5,8 @@
 #ifndef PAV_2019_GATO_H
 #define PAV_2019_GATO_H
 #include <iostream>
-#include "enum/TipoPelo.h"
+#include "../enum/TipoPelo.h"
+#include "../enum/Genero.h"
 #include "Mascota.h"
 using namespace std;
 
