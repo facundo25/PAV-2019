@@ -484,8 +484,17 @@ int main() {
                 getline(cin, ingresoMotivo);
                 cout << "Ingrese ci del socio: ";
                 cin >> ciSocio;
-                ingresarConsulta(ingresoMotivo, ciSocio);
-                cout<< SH_BG_LIGHT_BLUE<< "CONSULTA AGREGADA"<< SH_DEFAULT<< endl;
+                try {
+                    ingresarConsulta(ingresoMotivo, ciSocio);
+                    cout<< SH_FG_GREEN<< "CONSULTA INGRESADA"<< SH_DEFAULT<<endl;
+                }catch (invalid_argument &error){
+                    cout<<SH_FG_RED<< "\n\tHA OCURRIDO EL SIGUIENTE ERROR:"<<SH_DEFAULT<<endl;
+                    cout << error.what()<< endl;
+
+
+                }
+
+              //  cout<< SH_BG_LIGHT_BLUE<< "CONSULTA AGREGADA"<< SH_DEFAULT<< endl;
                 break;
 
             }
@@ -654,36 +663,10 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
 /********************* INGRESAR CONSULTA********************/
 
 void ingresarConsulta(string motivo, string ci) {
-    int contador = 0;
-    bool encontrado = false;
-
-    Socio *socio = NULL;
-
-    while (!encontrado && contador < MAX_SOCIOS) {
-
-        if (coleccionSocios.socios[contador]->getCi() == ci) {
-
-            //encontrado
-            socio = coleccionSocios.socios[contador];
-            encontrado = true;
-
-        }
-
-        contador++;
-    }
-
-    if(socio == NULL){
-
-        throw invalid_argument("No existe el socio");
-
-    } else {
-
-        //agrego consulta
-        DtFecha fecha = DtFecha(7, 5, 1991);
-        Consulta *consulta = new Consulta(fecha, motivo);
-        socio->ingresarConsulta(consulta);
-
-    }
+    Socio *socio = existeSocio(ci);
+    DtFecha fecha =DtFecha(27, 2, 1985);
+    Consulta *consulta= new Consulta(fecha, motivo);
+    socio -> ingresarConsulta(consulta);
 
 }
 
