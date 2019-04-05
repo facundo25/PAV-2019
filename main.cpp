@@ -52,6 +52,7 @@ DtMascota** obtenerMascotas(string ciSocio, int& cantMascotas);
 void ingresarConsulta(string motivo, string ci);
 void agregarMascota(string ci, DtMascota& Mascota);
 void eliminarSocio(string ci);
+Socio * existeSocio (string ci);
 //*********************************************
 
 int main() {
@@ -551,6 +552,11 @@ int main() {
 
                 case 5: {
                     limpiarPantalla();
+                    string ciSocio;
+                    int indice1 = 0;
+                    cout << "\n\tIngrese la CI del socio a eliminar: \n";
+                    cin >> ciSocio;
+                    eliminarSocio(ciSocio);
                     break;
 
                 }
@@ -619,13 +625,13 @@ void registrarSocio(string ci, string nombre, DtMascota &dtMascota) {
     try {
         DtGato &dtgato = dynamic_cast<DtGato &>(dtMascota);
         Gato *nuevoGato = new Gato(dtgato.getNombre(), dtgato.getGenero(), dtgato.getPeso(), dtgato.getTipoPelo());
-        nuevoSocio->agregarMascota(nuevoGato);
+        nuevoSocio->agregarMascotaSocio(nuevoGato);
 
     } catch (std::bad_cast &NombreVariable) {
         try {
             DtPerro &dtperro = dynamic_cast<DtPerro &>(dtMascota);
             Perro *nuevoPerro = new Perro(dtperro.getNombre(), dtperro.getGenero(), dtperro.getPeso(), dtperro.getRazaPerro(), dtperro.getVacunaCachorro());
-            nuevoSocio->agregarMascota(nuevoPerro);
+            nuevoSocio->agregarMascotaSocio(nuevoPerro);
         }
         catch (std::bad_cast &NombreVariable) {
             cout << "Error\n";
@@ -681,8 +687,8 @@ Socio * existeSocio (string ci){
     Socio* socio=NULL;
     int indice = 0;
     bool existe = false ;
-    while (existe == false && indice <= coleccionSocios.tope ){
-        if (coleccionSocios.socios[indice]->getCi() == ci) {
+    while (existe == false && indice < coleccionSocios.tope ){
+        if (coleccionSocios.socios[indice]->getCi().compare(ci)) {
             socio=coleccionSocios.socios[indice];
             existe = true;
         } else {
@@ -690,7 +696,7 @@ Socio * existeSocio (string ci){
         }
 
     }
-    if (socio==NULL) {
+    if (socio) {
         throw invalid_argument("\n No existe socio");
     }
     else{
@@ -703,14 +709,14 @@ Socio * existeSocio (string ci){
 
 void agregarMascota (string ci, DtMascota& Mascota){
     Socio * socio=NULL;
+
     try {
         socio=existeSocio(ci);
         if (esPerro){
             try {
                 DtPerro& perro = dynamic_cast<DtPerro&> (Mascota);
                 Perro* nuevoPerro = new Perro(perro.getNombre(), perro.getGenero(), perro.getPeso(), perro.getRazaPerro(), perro.getVacunaCachorro());
-                coleccionMascotas.mascotas[coleccionMascotas.tope] = nuevoPerro;
-                coleccionMascotas.tope++;
+                socio->agregarMascotaSocio(nuevoPerro);
                 cout << "\n Se agregó mascota del tipo Perro al socio indicado \n";
 
             }catch (std::bad_cast) {
@@ -722,8 +728,7 @@ void agregarMascota (string ci, DtMascota& Mascota){
             try {
                 DtGato& gato = dynamic_cast<DtGato&> (Mascota);
                 Gato* nuevoGato = new Gato(gato.getNombre(), gato.getGenero(), gato.getPeso(), gato.getTipoPelo());
-                coleccionMascotas.mascotas[coleccionMascotas.tope] = nuevoGato;
-                coleccionMascotas.tope++;
+                socio->agregarMascotaSocio(nuevoGato);
                 cout << "\n Se agregó mascota del tipo Gato al socio indicado \n";
 
             }catch (std::bad_cast) {
@@ -942,7 +947,25 @@ DtMascota** obtenerMascotas( string ciSocio, int &cantMascotas){
 
 /************* FUNCIÓN ELIMINAR SOCIO ***************/
 
-void eliminarSocio(string ci);
+void eliminarSocio(string ci){
+    Socio* socio=NULL;
+    int indice1 =0;
+    try {
+        socio=existeSocio(ci);
+        for(indice1; indice1 < coleccionSocios.tope; indice1++){
+            if(coleccionSocios.socios[indice1]->getCi().compare(ci)){
+                coleccionSocios.socios[indice1] =  coleccionSocios.socios[coleccionSocios.tope-1];
+                coleccionSocios.tope--;
+                cout << "Socio borrado.." << endl;
+            }
+        }
+
+    }catch(invalid_argument& e){
+        cout << e.what() << endl;
+    }
+
+
+}
 
 
 

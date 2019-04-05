@@ -50,7 +50,7 @@ public:
 
     ~Socio();
 
-    void agregarMascota(Mascota*);
+    void agregarMascotaSocio(Mascota*);
 
     void ingresarConsulta(Consulta*);
 

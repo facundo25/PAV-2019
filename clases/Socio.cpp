@@ -53,7 +53,7 @@ Consulta ** Socio::getConsultas(int &canCon) {
 
 }
 
-void Socio::agregarMascota(Mascota * mascota) {
+void Socio::agregarMascotaSocio(Mascota * mascota) {
     this -> arrayMascota[this->topeMascota]=mascota;
     this -> topeMascota++;
 
