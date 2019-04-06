@@ -70,7 +70,7 @@ int main() {
     int opcion = 0;
 /*
  * HARDCODEO DE DATOS PARA PRUEBAS*/
-
+/*
     cout << "[DATOS HARDCODEADOS] " << endl;
     DtGato dtGatotest = DtGato("GATO1", Hembra, 10, 0, Corto);
     DtGato dtGatotest2 = DtGato("GATO2", Macho, 20, 0, Largo);
@@ -109,9 +109,11 @@ int main() {
     //
     // ingresarConsulta("CORTE DE PELO", "321");
 
+ */
 /*
  * FIN DE HARDCODEO DE DATOS PARA PRUEBAS/
  */
+
     while (opcion != 99) {
 
         cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
