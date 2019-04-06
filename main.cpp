@@ -115,7 +115,7 @@ int main() {
     while (opcion != 99) {
 
         cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
-        cout << SH_FG_GREEN<< "--PROGRAMACIÓN AVANZADA - LABORATORIO 0-"SH_DEFAULT << endl;
+        cout << SH_FG_GREEN<<  "-PROGRAMACIÓN AVANZADA - LABORATORIO 0-"<< SH_DEFAULT << endl;
         cout << SH_FG_BLUE <<  "---------------------------------------"<< SH_DEFAULT << endl;
         cout << "1. Registrar socio" << endl;
         cout << "2. Agregar mascota" << endl;
@@ -360,11 +360,12 @@ int main() {
                 int pesoMascota;
                 string ciSocio;
                 int tipoMascota;
+                int genero;
 
-                cout << "\n\tIngrese la CI del socio: ";
+                cout << "\nIngrese la CI del socio: ";
                 cin >> ciSocio;
 
-                cout << "Ingrese el tipo de Mascota (1- Gato, 2-Perro): ";
+                cout << "Ingrese el tipo de Mascota (1.Gato; 2.Perro): ";
                 cin >> tipoMascota;
 
                 if (tipoMascota == 1){
@@ -376,9 +377,10 @@ int main() {
 
                 cout << "Ingrese el Nombre: ";
                 cin >> nombreMascota;
-                cout << "ingrese genero (1.hembra 2.macho)";
-                int genero;
+
+                cout << "Ingrese genero (1.Hembra; 2.Macho): ";
                 cin >> genero;
+
                 Genero generoSeleccionado;
                 switch (genero) {
                     case 1: {
@@ -391,13 +393,17 @@ int main() {
                     }
                 }
 
-                cout << "Ingrese el peso ";
+                cout << "Ingrese el peso: ";
                 cin >> pesoMascota;
 
                 if (esGato == true){
-                    cout << "Que tipo de pelo tiene? (1.corto, 2.mediano, 3.largo) ";
+
                     int seleccionPelo;
+                    float racionDiaria = 0;
+
+                    cout << "Que tipo de pelo tiene? (1.Corto; 2.Mediano; 3.Largo): ";
                     cin>> seleccionPelo;
+
                     TipoPelo tipopelo;
                     switch (seleccionPelo) {
                         case 1: {
@@ -413,15 +419,22 @@ int main() {
                             break;
                         }
                     }
-                    float racionDiaria = 0;
+
                     DtGato nuevoGato = DtGato(nombreMascota, generoSeleccionado, pesoMascota, racionDiaria, tipopelo);
                     agregarMascota(ciSocio, nuevoGato);
+
                 }
                 else if (esPerro == true) {
+
                     RazaPerro raza;
-                    cout << "Ingrese raza (1.Labrador; 2.Ovejero; 3.Bulldog; 4.Pitbull; 5.Collie; 6.Pekines; 7.Otro): ";
                     int seleccionRaza;
+                    int seleccionVacuna;
+                    bool tieneVacuna;
+                    float racionDiaria = 0;
+
+                    cout << "Ingrese raza (1.Labrador; 2.Ovejero; 3.Bulldog; 4.Pitbull; 5.Collie; 6.Pekines; 7.Otro): ";
                     cin >> seleccionRaza;
+
                     switch (seleccionRaza) {
                         case 1: {
                             raza = labrador;
@@ -440,12 +453,10 @@ int main() {
                             break;
                         }
                         case 5: {
-
                             raza = collie;
                             break;
                         }
                         case 6: {
-
                             raza = pekines;
                             break;
                         }
@@ -456,16 +467,15 @@ int main() {
 
                     }
 
-                    cout << "El perro tiene vacuna, 1 si 2 no?";
-                    int seleccionVacuna;
+                    cout << "El perro tiene vacuna? (1.Si; 2.No): ";
                     cin>> seleccionVacuna;
-                    bool tieneVacuna;
+
                     if (seleccionVacuna == 1) {
                         tieneVacuna = true;
                     } else {
                         tieneVacuna = false;
                     }
-                    float racionDiaria=0;
+
                     DtPerro nuevoPerro = DtPerro(nombreMascota, generoSeleccionado, pesoMascota, racionDiaria, raza, tieneVacuna);
                     agregarMascota(ciSocio, nuevoPerro);
                 }
@@ -483,19 +493,22 @@ int main() {
                 cout << "Ingrese el motivo de la consulta: ";
                 cin.ignore(); //se usa ignore porque el cout deja en el buffer un \n
                 getline(cin, ingresoMotivo);
+
                 cout << "Ingrese ci del socio: ";
                 cin >> ciSocio;
+
                 try {
+
                     ingresarConsulta(ingresoMotivo, ciSocio);
                     cout<< SH_FG_GREEN<< "CONSULTA INGRESADA"<< SH_DEFAULT<<endl;
-                }catch (invalid_argument &error){
-                    cout<<SH_FG_RED<< "\n\tHA OCURRIDO EL SIGUIENTE ERROR:"<<SH_DEFAULT<<endl;
-                    cout << error.what()<< endl;
 
+                }catch (invalid_argument &error){
+
+                    cout << SH_FG_RED << "\n\tHA OCURRIDO EL SIGUIENTE ERROR: " << SH_DEFAULT << endl;
+                    cout << error.what() << endl;
 
                 }
 
-              //  cout<< SH_BG_LIGHT_BLUE<< "CONSULTA AGREGADA"<< SH_DEFAULT<< endl;
                 break;
 
             }
@@ -548,6 +561,7 @@ int main() {
 
                 DtFecha *fecha = new DtFecha(dia, mes, anio);
                 DtConsulta **arregloConsulta = verConsultaAntesDeFecha(*fecha, ciSocio, cantConsultas);
+
                 if(auxCantConsultas != cantConsultas && arregloConsulta != NULL){
 
                     cout << endl << "La cantidad de consultas a visualizar es superior a las que este socio cuenta. Se visualizaran: " << cantConsultas << "." << endl;
@@ -559,12 +573,15 @@ int main() {
                     int numConsulta = 0;
                     DtFecha DtFec;
                     int cantConsFinal = 0;
+
                     for (int a = 0; a < cantConsultas; a++) {
+
                         DtFec = arregloConsulta[a]->getfechaConsulta();
+
                         numConsulta = a + 1; //Hago esto porque el array empieza en cero, entonces la primera consulta se va a presentar "Consulta 0"
+
                         cout << endl << "Consulta " << numConsulta << ":";
-                        cout << endl << "Fecha: " << DtFec.getdia() << "/" << DtFec.getmes() << "/"
-                             << DtFec.getano();
+                        cout << endl << "Fecha: " << DtFec.getdia() << "/" << DtFec.getmes() << "/" << DtFec.getano();
                         cout << endl << "Motivo: " << arregloConsulta[a]->getmotivo() << endl;
 
                     }
@@ -572,45 +589,70 @@ int main() {
                 }else {
 
                     cout << "No existen consultas para la fecha indicada." << endl;
+
                 }
+
                 break;
+
             }
+
             case 5: {
+
                 limpiarPantalla();
+
                 string ciSocio;
                 int indice1 = 0;
-                cout << "\n\tIngrese la CI del socio a eliminar: \n";
+
+                cout << "\nIngrese la CI del socio a eliminar: ";
                 cin >> ciSocio;
+
                 eliminarSocio(ciSocio);
+
                 break;
+
             }
 
             case 6: {
+                limpiarPantalla();
+
                 int cantMascotas;
                 string ciSocio;
-                limpiarPantalla();
+
                 cout << "Ingrese la CI del socio a consultar: ";
                 cin >> ciSocio;
+
                 cout << "Ingresar la cantidad de mascotas a visualizar: ";
                 cin >> cantMascotas;
+
                 try {
+
                     if ((existeSocio(ciSocio)) != NULL) {
+
                         DtMascota **arregloMascotas = obtenerMascotas(ciSocio, cantMascotas);
+
                         for (int x = 0; x < cantMascotas; x++) {
+
                             DtPerro *dtPerro = dynamic_cast<DtPerro *>(arregloMascotas[x]);
+
                             if (dtPerro != NULL) {
                                 cout << *(dtPerro) << endl;
                             } else {
                                 DtGato *dtGato = dynamic_cast<DtGato *>(arregloMascotas[x]);
                                 cout << *(dtGato) << endl;
                             }
+
                         }
+
                     }
                 } catch (invalid_argument &e) {
+
                     cout << e.what() << endl;
 
+
                 }
+
                 break;
+
             }
 
             case 99: {
@@ -685,6 +727,7 @@ Socio * existeSocio (string ci){
         if (coleccionSocios.socios[indice]->getCi().compare(ci) == 0) {
             socio=coleccionSocios.socios[indice];
             existe = true;
+
         } else {
             indice ++;
         }
@@ -858,7 +901,7 @@ DtConsulta **verConsultaAntesDeFecha(DtFecha& fecha, string ciSocio, int& cantCo
 
         }
 
-    }else{ //No encontre socio: cargo la cantidad de consultas como 0 mark
+    }else{ //No encontre socio: cargo la cantidad de consultas como 0
 
         DtConsulta **Consultas = NULL;
 
