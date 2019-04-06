@@ -711,7 +711,6 @@ void agregarMascota (string ci, DtMascota& Mascota){
                 DtPerro& perro = dynamic_cast<DtPerro&> (Mascota);
                 Perro* nuevoPerro = new Perro(perro.getNombre(), perro.getGenero(), perro.getPeso(), perro.getRazaPerro(), perro.getVacunaCachorro());
                 socio->agregarMascotaSocio(nuevoPerro);
-                esPerro=false;
                 cout << "\n Se agregó mascota del tipo Perro al socio indicado \n";
 
             }catch (std::bad_cast) {
@@ -724,7 +723,6 @@ void agregarMascota (string ci, DtMascota& Mascota){
                 DtGato& gato = dynamic_cast<DtGato&> (Mascota);
                 Gato* nuevoGato = new Gato(gato.getNombre(), gato.getGenero(), gato.getPeso(), gato.getTipoPelo());
                 socio->agregarMascotaSocio(nuevoGato);
-                esGato=false;
                 cout << "\n Se agregó mascota del tipo Gato al socio indicado \n";
 
             }catch (std::bad_cast) {
