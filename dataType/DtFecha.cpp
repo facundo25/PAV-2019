@@ -1,4 +1,4 @@
-#include "DtFecha.h"
+#include "./DtFecha.h"
 #include <iostream>
 
 DtFecha::DtFecha(){}

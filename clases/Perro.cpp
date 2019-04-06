@@ -2,9 +2,9 @@
 // Created by gsoto on 25/03/2019.
 //
 
-#include "Perro.h"
-#include "enum/RazaPerro.h"
-#include "Mascota.h"
+#include "./Perro.h"
+#include "../enum/RazaPerro.h"
+#include "./Mascota.h"
 #include <iostream>
 
 Perro::Perro(){}

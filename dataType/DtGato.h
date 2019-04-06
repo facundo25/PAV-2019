@@ -1,7 +1,7 @@
 #ifndef DTGATO_H
 #define DTGATO_H
 
-#include "DtMascota.h"
+#include "../dataType/DtMascota.h"
 
 
 class DtGato : public DtMascota {

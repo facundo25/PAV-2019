@@ -5,9 +5,9 @@
 #ifndef OBLIGATORIO0_SOCIO_H
 #define OBLIGATORIO0_SOCIO_H
 
-#include "dataType/DtFecha.h"
-#include "Mascota.h"
-#include "Consulta.h"
+#include "../dataType/DtFecha.h"
+#include "./Mascota.h"
+#include "./Consulta.h"
 #include <iostream>
 
 using namespace std;

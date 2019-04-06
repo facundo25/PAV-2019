@@ -7,18 +7,18 @@
 #include "ui/shellColors.h"
 #include <typeinfo>
 #include "dataType/DtMascota.h"
-#include <dataType/DtGato.h>
-#include <dataType/DtPerro.h>
-#include <dataType/DtConsulta.h>
+#include "./dataType/DtGato.h"
+#include "./dataType/DtPerro.h"
+#include "./dataType/DtConsulta.h"
 //#include <codecvt>
 #include <stdexcept>
-#include "dataType/DtFecha.h"
-#include "dataType/DtConsulta.h"
-#include "clases/Socio.h"
-#include "clases/Gato.h"
-#include "clases/Perro.h"
-#include "clases/Consulta.h"
-#include "clases/Mascota.h"
+#include "./dataType/DtFecha.h"
+#include "./dataType/DtConsulta.h"
+#include "./clases/Socio.h"
+#include "./clases/Gato.h"
+#include "./clases/Perro.h"
+#include "./clases/Consulta.h"
+#include "./clases/Mascota.h"
 
 
 #define MAX_SOCIOS 10

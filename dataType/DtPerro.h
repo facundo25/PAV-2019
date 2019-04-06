@@ -2,8 +2,9 @@
 #define DTPERRO_H
 
 #include <iostream>
-#include "DtMascota.h"
-#include "enum/RazaPerro.h"
+#include "../dataType/DtMascota.h"
+#include "../enum/RazaPerro.h"
+#include "../dataType/DtPerro.h"
 
 using  namespace std;
 

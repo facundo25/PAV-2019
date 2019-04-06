@@ -25,7 +25,7 @@ main.o: main.cpp
 Mascota.o: clases/Mascota.cpp
 	g++ -c clases/Mascota.cpp -o Mascota.o
 
-Perro.o: Clases/Perro.cpp
+Perro.o: clases/Perro.cpp
 	g++ -c clases/Perro.cpp -o Perro.o
 
 Socio.o: clases/Socio.cpp
