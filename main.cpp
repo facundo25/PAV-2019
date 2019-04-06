@@ -361,7 +361,7 @@ int main() {
                 string ciSocio;
                 int tipoMascota;
 
-                cout << "\n\tIngrese la CI del socio: \n";
+                cout << "\n\tIngrese la CI del socio: ";
                 cin >> ciSocio;
 
                 cout << "Ingrese el tipo de Mascota (1- Gato, 2-Perro): ";
@@ -395,7 +395,7 @@ int main() {
                 cin >> pesoMascota;
 
                 if (esGato == true){
-                    cout << "Que tipo de pelo tiene? seleccione 1 corto, 2 mediano, 3 largo";
+                    cout << "Que tipo de pelo tiene? (1.corto, 2.mediano, 3.largo) ";
                     int seleccionPelo;
                     cin>> seleccionPelo;
                     TipoPelo tipopelo;
@@ -419,7 +419,7 @@ int main() {
                 }
                 else if (esPerro == true) {
                     RazaPerro raza;
-                    cout << "Ingrese raza (mire las opciones del 1 al 8) ";
+                    cout << "Ingrese raza (1.Labrador; 2.Ovejero; 3.Bulldog; 4.Pitbull; 5.Collie; 6.Pekines; 7.Otro): ";
                     int seleccionRaza;
                     cin >> seleccionRaza;
                     switch (seleccionRaza) {
