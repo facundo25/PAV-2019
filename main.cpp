@@ -143,6 +143,7 @@ int main() {
                     Genero generoSeleccionado;
                     float peso;
                     int seleccionMascota;
+                    string pesoString;
 
                     bool selOK = false;
                     limpiarPantalla();
@@ -186,8 +187,9 @@ int main() {
                         }
                     }
 
-                    cout << "Ingrese peso en kgs: ";
-                    cin >> peso;
+                    cout << "Ingrese el peso en kgs (el separador decimal es el punto): ";
+                    cin >> pesoString;
+                    peso = strtof((pesoString).c_str(),0);
 
                     selOK = false;
 
@@ -357,10 +359,11 @@ int main() {
                 limpiarPantalla();
 
                 string nombreMascota;
-                int pesoMascota;
+                float pesoMascota;
                 string ciSocio;
                 int tipoMascota;
                 int genero;
+                string pesoString;
 
                 cout << "\nIngrese la CI del socio: ";
                 cin >> ciSocio;
@@ -393,8 +396,9 @@ int main() {
                     }
                 }
 
-                cout << "Ingrese el peso: ";
-                cin >> pesoMascota;
+                cout << "Ingrese el peso en kgs (el separador decimal es el punto): ";
+                cin >> pesoString;
+                pesoMascota=strtof((pesoString).c_str(),0);
 
                 if (esGato == true){
 
