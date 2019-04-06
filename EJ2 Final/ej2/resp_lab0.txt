@@ -1,0 +1,6 @@
+Cuáles son las dependencias circulares que fueron necesarias solucionar para que el programa compile?
+
+En la clase A la dependencia circular con B y C, en la clase B la dependencia circular con A y C y en la clase C la dependencia circular con A y B.
+
+Que es el forward declaration?
+Es la manera de indicarle al compilador que una clase tiene una referencia o instancia a otra clase en su declaración que no conoce. En nuestro ejemplo en el header de la clase A hacemos forward declaration con la clase B y C por medio de las sentencias Class ClaseB y Class ClaseC.
